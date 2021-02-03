@@ -1,6 +1,8 @@
 public class Test {
-    public String fonction{
+
+    public String fonction(){
         String steak = "salé";
         return steak;
     }
+
 }
