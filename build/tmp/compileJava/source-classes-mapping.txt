@@ -8,11 +8,15 @@ fr/imt/cepi/servlet/RegisterServlet.java
  fr.imt.cepi.servlet.RegisterServlet
 fr/imt/cepi/servlet/LogoutServlet.java
  fr.imt.cepi.servlet.LogoutServlet
-fr/imt/cepi/servlet/HomeServlet.java
- fr.imt.cepi.servlet.HomeServlet
-Test.java
- Test
-fr/imt/cepi/servlet/listeners/AppContextListener.java
- fr.imt.cepi.servlet.listeners.AppContextListener
 fr/imt/cepi/servlet/LoginServlet.java
  fr.imt.cepi.servlet.LoginServlet
+fr/imt/cepi/servlet/HomeServlet.java
+ fr.imt.cepi.servlet.HomeServlet
+fr/imt/cepi/servlet/listeners/AppContextListener.java
+ fr.imt.cepi.servlet.listeners.AppContextListener
+Match.java
+ Match
+Equipe.java
+ Equipe
+Tournoi.java
+ Tournoi
