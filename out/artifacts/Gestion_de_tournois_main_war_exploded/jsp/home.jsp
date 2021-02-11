@@ -19,7 +19,7 @@
         eleifend rhoncus diam mollis quis. Praesent pulvinar, neque ac auctor sodales, nunc velit lobortis dui, et
         cursus enim nisi sit amet est.</p>
     <c:forEach items="${listeTournoisJSP}" var="unTournois">
-        <div>${unTournois} pour ${utilisateur.nom}</div>
+        <div>${unTournois} pour ** ${utilisateur.nom}</div>
     </c:forEach>
     <br>
     <a href="<c:url value="Logout"/>">Déconnexion</a>
