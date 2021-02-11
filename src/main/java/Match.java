@@ -1,4 +1,4 @@
-public class Matches {
+public class Match {
 
     //Attributs
 
