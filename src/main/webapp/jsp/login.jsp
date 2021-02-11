@@ -3,20 +3,22 @@
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form">
-            <h3>Connection</h3>
+            <br>
+            <br>
+            <h3>Se connecter</h3>
             <%@ include file="template/alerts.jsp"%>
              <form action="Login" method="post">
 
                 <div class="form-group">
                     <input name="login" type="text" class="form-control"
-                           placeholder="Login" value=""/>
+                           placeholder="Identifiant" value=""/>
                 </div>
                 <div class="form-group">
                     <input name="password" type="password" class="form-control"
                            placeholder="Mot de passe" value=""/>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btnSubmit" value="Se connecter" name="connect"/>
+                    <input type="submit" class="btnSubmit" value="S'identifier" name="connect"/>
                 </div>
                 <div class="form-group">
                     <a href="<c:url value="Register"/>" class="ForgetPwd">Pas encore enregistré ?</a>
