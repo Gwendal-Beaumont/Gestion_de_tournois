@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     // Sinon, message d'erreur dans la requête pour affichage dans la vue login.jsp.
                     logger.error("Utilisateur introuvable : " + login);
-                    request.setAttribute("errorMessage", "Combinaison incorrecte.");
+                    request.setAttribute("errorMessage", "Mauvais nom d'utilisateur ou mot de passe.");
                     getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                 }
             } catch (SQLException e) {
