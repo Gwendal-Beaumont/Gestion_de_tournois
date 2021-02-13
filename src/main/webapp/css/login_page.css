@@ -1,15 +1,10 @@
 html, body, p, h1 {
     font-family: 'Roboto', sans-serif;
 }
-body{
-    background-position: center;
-    background-size: 10%;
-    height: 500px;
-}
+body{}
 .login-container {
     margin-top: 5%;
     margin-bottom: 5%;
-    background: white;
 }
 
 .login-form {

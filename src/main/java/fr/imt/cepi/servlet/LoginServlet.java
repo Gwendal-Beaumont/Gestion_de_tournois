@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // récupérations des paramètres d ela requêtes : ici les champs input du formulaire
+        // récupérations des paramètres de la requêtes : ici les champs input du formulaire
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 

@@ -1,17 +1,16 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@include file="template/debut.jsp"%>
+<title>Identification</title>
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form">
-            <br>
-            <br>
-            <h3>Se connecter</h3>
+            <h1>Se connecter</h1>
             <%@ include file="template/alerts.jsp"%>
              <form action="Login" method="post">
 
                 <div class="form-group">
                     <input name="login" type="text" class="form-control"
-                           placeholder="Identifiant" value=""/>
+                           placeholder="Nom d'utilisateur" value=""/>
                 </div>
                 <div class="form-group">
                     <input name="password" type="password" class="form-control"
