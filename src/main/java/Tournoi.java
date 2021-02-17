@@ -1,111 +1,89 @@
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Tournoi {
+public class Tournoi implements Serializable {
 
     /**
      * Classe définissant les principaux paramètres du tournoi.
      */
     //Attributs
-    private ArrayList<Match> listeMatches;
-    private ArrayList<Equipe> listeEquipes;
-    private String nomTournoi;
-    static private int idTournoi = 0;
-    private int idSport;
-    private Boolean tournoiPublic;
+    private int id;
+    private String nom_tournoi;
+    private ArrayList<Equipe> liste_equipes;
+    private ArrayList<Match> liste_matches;
+    private int id_sport;
+    private Boolean visibility;
+    private LocalDate date;
+    private int proprietaire;
 
-    //Constructeur
-    public Tournoi() {
-        this.idTournoi++;
+    // Constructeur
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDate date, int proprietaire){
+        this.id = id;
+        this.nom_tournoi = nom_tournoi;
+        this.liste_equipes = liste_equipes;
+        liste_matches = new ArrayList<Match>();
+        this.id_sport = id_sport;
+        this.visibility = visibility;
+        this.date = date;
+        this.proprietaire = proprietaire;
     }
 
     //Méthodes
 
     /**
      * Setter permettant de définir la liste de matches du tournoi.
-     * @param matches Liste des matches qui ont lieu durant le tournoi
+     *
+     * @param matches
      */
     public void setMatches(ArrayList<Match> matches) {
-        this.listeMatches = matches;
+        this.liste_matches = matches;
     }
 
     /**
      * Getter permettant de récupérer la liste des matches du tournoi.
+     *
      * @return ArrayList
      */
-    public ArrayList<Match> getMatches() {
-        return listeMatches;
+    public ArrayList getMatches() {
+        return liste_matches;
     }
 
     /**
      * Setter permettant de définir la liste des équipes du tournoi.
-     * @param equipes Liste des équipes prenant part au tournoi
+     *
+     * @param equipes
      */
     public void setEquipes(ArrayList<Equipe> equipes) {
-        this.listeEquipes = equipes;
+        this.liste_equipes = equipes;
     }
 
     /**
      * Getter permettant de récupérer la liste des équipes du tournoi.
+     *
      * @return ArrayList
      */
-    public ArrayList<Equipe> getEquipes() {
-        return listeEquipes;
+    public ArrayList getEquipes() {
+        return liste_equipes;
     }
 
     /**
      * Setter permettant de définir le nom du tournoi.
-     * @param nom Nom du tournoi
+     *
+     * @param nom
      */
-    public void setNomTournoi(String nom) {
-        this.nomTournoi = nom;
+    public void setNom_tournoi(String nom) {
+        this.nom_tournoi = nom;
     }
 
     /**
      * Getter permettant de récupérer le nom du tournoi.
+     *
      * @return String
      */
-    public String getNomTournoi() {
-        return nomTournoi;
+    public String getNom_tournoi() {
+        return nom_tournoi;
     }
 
-    /**
-     * Getter permettant de récupérer l'identifiant du tournoi.
-     * @return int
-     */
-    public int getIdTournoi() {
-        return idTournoi;
-    }
-
-    /**
-     * Setter permettant de définir le type de sport du tournoi.
-     * @param idSport Type de sport désiré
-     */
-    public void setIdSport(int idSport) {
-        this.idSport = idSport;
-    }
-
-    /**
-     * Getter permettant de récupérer le type de sport du tournoi.
-     * @return int
-     */
-    public int getIdSport() {
-        return idSport;
-    }
-
-    /**
-     * Setter permettant de définir si le tournoi est public ou privé.
-     * @param type public (true) ou privé (false)
-     */
-    public void setTypeTournoi(Boolean type) {
-        this.tournoiPublic = type;
-    }
-
-    /**
-     * Getter permettant de savoir si le tournoi est public (true) ou privé (false).
-     * @return Boolean
-     */
-    public Boolean getTournoiPublic() {
-        return tournoiPublic;
-    }
 
 }

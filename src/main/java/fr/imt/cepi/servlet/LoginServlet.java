@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // récupérations des paramètres d ela requêtes : ici les champs input du formulaire
+        // récupérations des paramètres de la requêtes : ici les champs input du formulaire
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
@@ -73,14 +73,14 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     // Sinon, message d'erreur dans la requête pour affichage dans la vue login.jsp.
                     logger.error("Utilisateur introuvable : " + login);
-                    request.setAttribute("errorMessage", "Combinaison incorrecte.");
+                    request.setAttribute("errorMessage", "Mauvais nom d'utilisateur ou mot de passe.");
                     getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                 }
             } catch (SQLException e) {
                 // Sinon, log de l'erreur et renvoi sur la vue login.jsp avec un message d'erreur
                 logger.error("Problème d'accès à la base de données : ", e);
                 request.setAttribute("errorMessage", "Erreur technique : veuillez contacter l'administrateur de l'application.");
-                getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/Login").forward(request, response);
             } finally {
                 try {
                     rs.close();

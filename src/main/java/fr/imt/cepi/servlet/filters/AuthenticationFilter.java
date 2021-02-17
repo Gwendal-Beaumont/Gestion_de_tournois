@@ -35,8 +35,8 @@ public class AuthenticationFilter implements Filter {
 
         if (session == null) {
             System.out.println("Session null");
-            // Affichage de la page de connection
-            req.getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request,response);
+            // Affichage de la page de connexion
+            req.getServletContext().getRequestDispatcher("/index.jsp").forward(request,response);
         } else {
             // poursuit par le prochain filtre
             chain.doFilter(request, response);

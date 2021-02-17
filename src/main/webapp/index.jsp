@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>index.jsp</title>
   </head>
   <body>
-  $END$
+  <%@include file="jsp/template/navbar.jsp"%>
+  <a href="${pageContext.request.contextPath}/Login">login</a>
+  <a href="${pageContext.request.contextPath}/Register">register</a>
+  <a href="${pageContext.request.contextPath}/Home">home</a>
   </body>
 </html>
