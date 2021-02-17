@@ -9,6 +9,7 @@ public class Utilisateur implements Serializable {
 	private int id;
 	private final String nom;
 	private final String login;
+	private int role_general = 0;
 
 	public Utilisateur(String nom, String login, int id) {
 		this.nom = nom;
@@ -36,5 +37,7 @@ public class Utilisateur implements Serializable {
 	public String toString() {
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", login=" + login + "]";
 	}
+
+	public void setRole_general(int nouveauRole) { this.role_general = nouveauRole; }
 
 }

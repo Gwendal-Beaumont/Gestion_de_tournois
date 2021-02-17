@@ -80,7 +80,7 @@ public class LoginServlet extends HttpServlet {
                 // Sinon, log de l'erreur et renvoi sur la vue login.jsp avec un message d'erreur
                 logger.error("Problème d'accès à la base de données : ", e);
                 request.setAttribute("errorMessage", "Erreur technique : veuillez contacter l'administrateur de l'application.");
-                getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
+                getServletContext().getRequestDispatcher("/Login").forward(request, response);
             } finally {
                 try {
                     rs.close();

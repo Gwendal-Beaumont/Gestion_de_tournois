@@ -11,8 +11,9 @@
     <title>index.jsp</title>
   </head>
   <body>
-  <a href="jsp/login.jsp">login</a>
-  <a href="jsp/register.jsp">register</a>
-  <a href="jsp/home.jsp">home</a>
+  <%@include file="jsp/template/navbar.jsp"%>
+  <a href="${pageContext.request.contextPath}/Login">login</a>
+  <a href="${pageContext.request.contextPath}/Register">register</a>
+  <a href="${pageContext.request.contextPath}/Home">home</a>
   </body>
 </html>
