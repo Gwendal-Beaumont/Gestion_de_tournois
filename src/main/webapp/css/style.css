@@ -5,8 +5,10 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+header {
     background-color: #0a0a0a;
-    color: #f1f1f1;
 }
 
 li, a, button {
@@ -61,4 +63,9 @@ header {
 
 .login_register_navbar .register_navbar {
     padding-left: 20px;
+    transition: all 0.4s ease 0s;
+}
+
+.login_register_navbar .register_navbar:hover {
+    color: #d32f2f;
 }
