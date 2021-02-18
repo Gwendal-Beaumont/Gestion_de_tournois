@@ -69,3 +69,7 @@ header {
 .login_register_navbar .register_navbar:hover {
     color: #d32f2f;
 }
+
+.jumbotron a {
+    color: #d32f2f;
+}

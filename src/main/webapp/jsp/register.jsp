@@ -11,16 +11,12 @@
     <%@ include file="template/alerts.jsp" %>
     <form action="Register" method="post">
 
-        <input name="nom" type="text" class="form-control"
-               placeholder="Nom" value="" required/>
         <input name="login" type="text" class="form-control"
                placeholder="Username" value="" required/>
-        <input name="nom" type="email" class="form-control"
-               placeholder="Adresse mail" value="" required/>
+        <input name="nom" type="text" class="form-control"
+               placeholder="Nom" value="" required/>
         <input name="password" type="password" class="form-control"
                placeholder="Mot de passe" value="" required/>
-        <input name="passwordConfirmation" type="password" class="form-control"
-               placeholder="Mot de passe (confirmation)" value="" required/>
         <input type="submit" class="btnSubmit" value="S'enregistrer"/>
         <a href="<c:url value="Login"/>" class="ForgetPwd">Déjà enregistré ?</a>
 
