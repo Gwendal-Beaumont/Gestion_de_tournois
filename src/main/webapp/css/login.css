@@ -80,3 +80,8 @@ body {
 .login_box h1 {
     padding-bottom: 20px;
 }
+
+.alert-info .alert-danger {
+    background: #d32f2f;
+    color: #d32f2f;
+}
