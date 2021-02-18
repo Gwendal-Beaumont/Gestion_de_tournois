@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #0a0a0a;
+}
+
+li, a, button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #f1f1f1;
+    text-decoration: none;
+}
+
+.nav__links {
+    list-style: none;
+}
+
+.logo {
+    height: 40px;
+    cursor: pointer;
+}
+
+.nav__links li {
+    display: inline-block;
+    padding: 0 20px
+}
+
+.nav__links li a {
+    transition: all 0.4s ease 0s;
+}
+
+.nav__links li a:hover {
+    color: #d32f2f;
+}
+
+button {
+    padding: 9px 25px;
+    background-color: rgba(211, 47, 47, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease 0s;
+}
+
+button:hover {
+    background-color: rgba(211, 47, 47, 0.6);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.login_register_navbar .register_navbar {
+    padding-left: 20px;
+    transition: all 0.4s ease 0s;
+}
+
+.login_register_navbar .register_navbar:hover {
+    color: #d32f2f;
+}
+
+.jumbotron a {
+    color: #d32f2f;
+}

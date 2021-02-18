@@ -7,10 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>index.jsp</title>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+</head>
+<body>
+<%@include file="jsp/template/navbar.jsp" %>
+<p>Première ligne dans la page</p>
+</body>
 </html>
