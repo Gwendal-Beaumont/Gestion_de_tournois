@@ -59,67 +59,6 @@ header {
     padding: 30px 10%;
 }
 
-.login_box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 350px;
-    height: 420px;
-    padding: 80px 40px;
-    box-sizing: border-box;
-}
-
-.login_box p {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    color: #f1f1f1;
-}
-
-.login_box input {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.login_box input[type=text], .login_box input[type=password] {
-    border: none;
-    border-bottom: 1px solid #f1f1f1;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    color: #f1f1f1;
-    font-size: 16px;
-}
-
-::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.login_box input[type=submit] {
-    border: none;
-    outline: none;
-    height: 40px;
-    color: #f1f1f1;
-    font-size: 16px;
-    background-color: rgba(211, 47, 47, 1);
-    cursor: pointer;
-    border-radius: 20px;
-    transition: all 0.4s ease 0s;
-}
-
-.login_box input[type=submit]:hover {
-    background-color: rgba(211, 47, 47, 0.6);
-}
-
-.login_box a {
-    transition: all 0.4s ease 0s;
-}
-
-.login_box a:hover {
-    color: #d32f2f;
-}
-
-.login_box h1 {
-    padding-bottom: 20px;
+.login_register_navbar .register_navbar {
+    padding-left: 20px;
 }
