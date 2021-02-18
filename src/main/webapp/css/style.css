@@ -21,13 +21,14 @@ li, a, button {
     list-style: none;
 }
 
+.logo {
+    height: 40px;
+    cursor: pointer;
+}
+
 .nav__links li {
     display: inline-block;
     padding: 0 20px
-}
-
-.nav__links li:nth-child(1) {
-    padding: 0 20px 0 0;
 }
 
 .nav__links li a {
