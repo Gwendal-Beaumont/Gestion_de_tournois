@@ -2,7 +2,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ include file="template/debut.jsp" %>
 <%@ include file="template/navbar.jsp" %>
-<title>Accueil - ${utilisateur.nom}</title>
+<title>home.jsp - ${utilisateur.nom}</title>
 <div class="jumbotron">
     <h1 class="display-4">Bonjour ${utilisateur.getLogin()},
     </h1>

@@ -11,7 +11,6 @@
     <meta name="apple-mobile-web-app-title" content="Ma Servlet">
     <meta name="description" content="Example de servlet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" href="Desktop/IJServletExample/src/main/webapp/images/icons/icon-152.png">    <link
             href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
             rel="stylesheet" id="bootstrap-css">

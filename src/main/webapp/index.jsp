@@ -7,13 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>index.jsp</title>
-  </head>
-  <body>
-  <%@include file="jsp/template/navbar.jsp"%>
-  <a href="${pageContext.request.contextPath}/Login">login</a>
-  <a href="${pageContext.request.contextPath}/Register">register</a>
-  <a href="${pageContext.request.contextPath}/Home">home</a>
-  </body>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
+</head>
+<body>
+<%@include file="jsp/template/navbar.jsp" %>
+<p>Première ligne dans la page</p>
+</body>
 </html>
