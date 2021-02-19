@@ -7,6 +7,10 @@
     padding: 0;
 }
 
+#body_text {
+    padding: 2%;
+}
+
 header {
     background-color: #0a0a0a;
 }
@@ -72,4 +76,67 @@ header {
 
 .jumbotron a {
     color: #d32f2f;
+}
+
+/*Footer*/
+
+#footer {
+    padding: 50px 0 30px;
+}
+
+hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid #0a0a0a;
+}
+
+.footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-left-col {
+    flex-basis: 50%;
+    margin-top: 50px;
+}
+
+.footer-right-col {
+    flex-basis: 30%;
+    margin-top: 50px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.link-title h4 {
+    color: #d32f2f;
+    margin-bottom: 20px;
+}
+
+.link-title small {
+    color: #0a0a0a;
+    font-size: 13px;
+}
+
+.footer-logo {
+    margin-top: 5px;
+    height: 60px;
+    cursor: pointer;
+}
+
+#about-section h1 {
+    margin-left: 50px;
+}
+#about-section p {
+    margin: 20px 80px;
+    text-align: justify;
+}
+
+.tabulation{
+    padding-left: 40px;
 }
