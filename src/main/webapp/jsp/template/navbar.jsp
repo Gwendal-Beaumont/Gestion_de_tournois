@@ -4,7 +4,7 @@
     <nav>
         <ul class="nav__links">
             <li><a href="${pageContext.request.contextPath}/Home">Accueil</a></li>
-            <li><a href="#">Tournois publics</a></li>
+            <li><a href="${pageContext.request.contextPath}/create_tournament">Tournois publics</a></li>
             <li><a href="${pageContext.request.contextPath}/jsp/about.jsp">&Agrave; propos</a></li>
         </ul>
     </nav>
