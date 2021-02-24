@@ -66,6 +66,8 @@
     </p>
 </section>
 
+<div class="perseverance-landed-on-mars"></div>
+
 <%@ include file="template/footer.jsp" %>
 </body>
 </html>
