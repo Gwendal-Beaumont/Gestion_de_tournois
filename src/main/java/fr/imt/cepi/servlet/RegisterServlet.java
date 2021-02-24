@@ -31,7 +31,6 @@ public class RegisterServlet extends HttpServlet {
         // Récupération des valeurs des champs du formulaire
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String passwordConfirmation = request.getParameter("passwordConfirmation");
         String nom = request.getParameter("nom");
         // Quelques contrôles
         String errorMsg = null;
@@ -43,9 +42,6 @@ public class RegisterServlet extends HttpServlet {
         }
         if (nom == null || nom.equals("")) {
             errorMsg = "Le nom est obligatoire";
-        }
-        if (!(password.equals(passwordConfirmation))) {
-            errorMsg = "Les mots de passes doivent correspondre";
         }
         // S'il y a des erreurs, on met le message en attribut de la requête et on renvoie sur la page de login
         if (errorMsg != null) {

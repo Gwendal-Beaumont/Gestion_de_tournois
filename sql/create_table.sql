@@ -9,11 +9,11 @@ GRANT ALL PRIVILEGES ON tst.* TO 'tst'@'localhost';
 
 -- Création de la table des utilisateurs
 CREATE TABLE tst.utilisateur (
-                                 id int NOT NULL AUTO_INCREMENT,
-                                 nom varchar(20) NOT NULL,
-                                 login varchar(20) NOT NULL,
-                                 password varchar(20) NOT NULL,
-                                 PRIMARY KEY (id)
+    id int NOT NULL AUTO_INCREMENT,
+    nom varchar(20) NOT NULL,
+    login varchar(20) NOT NULL,
+    password varchar(20) NOT NULL,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Rajout du rôle général, changement du nom en username et du login en email pour l'utilisateur
@@ -84,9 +84,10 @@ CREATE TABLE tst.administrateur(
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Création de la table d'association utilisateur/équipe
-CREATE TABLE tst.equipe_utilisateur(
+CREATE TABLE tst.equipe_joueur(
     id_equipe int NOT NULL,
     id_joueur int NOT NULL,
+    role int,
     CONSTRAINT fkEquipeEquipe FOREIGN KEY (id_equipe) REFERENCES equipe(id),
     CONSTRAINT fkEquipeJoueur FOREIGN KEY (id_joueur) REFERENCES utilisateur(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #0a0a0a;
+    color: #f1f1f1;
+}
+
+body {
+    background: url("../images/pocky-lee-7xYN4E-XaHQ-unsplash.jpg");
+    background-size: cover;
+}
+
+.login_box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: auto;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+}
+
+.login_box form, .login_box h1 {
+    background: none;
+}
+
+.login_box input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.login_box input[type=text], .login_box input[type=password], .login_box input[type=email] {
+    border: none;
+    border-bottom: 1px solid #f1f1f1;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #f1f1f1;
+    font-size: 16px;
+}
+
+::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.login_box input[type=submit] {
+    border: none;
+    outline: none;
+    height: 40px;
+    color: #f1f1f1;
+    font-size: 16px;
+    background-color: rgba(211, 47, 47, 1);
+    cursor: pointer;
+    border-radius: 20px;
+    transition: all 0.4s ease 0s;
+}
+
+.login_box input[type=submit]:hover {
+    background-color: #9a0007;
+}
+
+.login_box a {
+    color: #f1f1f1;
+    text-decoration: none;
+    transition: all 0.4s ease 0s;
+    background: none;
+}
+
+.login_box a:hover {
+    color: #d32f2f;
+}
+
+.login_box h1 {
+    padding-bottom: 20px;
+}

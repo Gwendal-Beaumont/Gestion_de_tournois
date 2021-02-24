@@ -1,6 +1,5 @@
 package fr.imt.cepi.servlet;
 
-import fr.imt.cepi.bean.Utilisateur;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -32,7 +31,6 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("listeTournoisJSP", listeTournois);
         getServletContext().getRequestDispatcher("/jsp/home.jsp").forward(request,response);
         HttpSession session = request.getSession();
-        Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
 
         // On cherche les sports associés à l'utilisateur dans la base de données
         Connection con = null;
