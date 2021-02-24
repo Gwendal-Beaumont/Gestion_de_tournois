@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%@ include file="template/head_import.jsp" %>
     <title>login.jsp</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
 </head>

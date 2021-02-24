@@ -2,6 +2,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
+    <%@ include file="template/head_import.jsp" %>
     <title>home.jsp - ${utilisateur.nom}</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
@@ -18,5 +19,8 @@
     <br>
     <a href="<c:url value="Logout"/>">Déconnexion</a>
 </div>
+
+<%@ include file="template/footer.jsp" %>
+
 </body>
 </html>
