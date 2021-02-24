@@ -1,6 +1,8 @@
 <%@ page pageEncoding="UTF-8" %>
 <header>
-    <a href="${pageContext.request.contextPath}/"><img class="logo" src="${pageContext.request.contextPath}/images/logo_white_48pt.svg" alt="logo"></a>
+    <a href="${pageContext.request.contextPath}/"><img class="logo"
+                                                       src="${pageContext.request.contextPath}/images/logo_white_48pt.svg"
+                                                       alt="logo"></a>
     <nav>
         <ul class="nav__links">
             <li><a href="${pageContext.request.contextPath}/Home">Accueil</a></li>
