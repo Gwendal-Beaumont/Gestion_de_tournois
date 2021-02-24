@@ -12,7 +12,7 @@
     <h1 class="display-4">Bonjour ${utilisateur.getLogin()},
     </h1>
     <c:forEach items="${listeTournoisJSP}" var="unTournois">
-        <div>${unTournois} pour ** ${utilisateur.getLogin()}</div>
+        <div>${unTournois} pour *é* ${utilisateur.getLogin()}</div>
     </c:forEach>
 
     <div>Premier test, le sport associé à l'id 1 est : ${sport} !</div>
