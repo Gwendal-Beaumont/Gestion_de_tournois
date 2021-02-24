@@ -18,6 +18,11 @@
     <div>Premier test, le sport associé à l'id 1 est : ${sport} !</div>
     <br>
     <a href="<c:url value="Logout"/>">Déconnexion</a>
+    <br/>
+    <a href="create_tournament.jsp"> Créer mon tournoi </a>
+
+
+
 </div>
 
 <%@ include file="template/footer.jsp" %>
