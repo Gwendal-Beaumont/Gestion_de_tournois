@@ -1,6 +1,7 @@
 package fr.imt.cepi.servlet;
 
 import fr.imt.cepi.bean.Sport;
+import fr.imt.cepi.bean.Utilisateur;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @WebServlet("/create_tournament")
@@ -31,7 +35,7 @@ public class CreateTournamentServlet extends HttpServlet {
             // Annonce dans le logger de la tentative de récupération des données
             logger.info("Fetching all sports data");
             con = AppContextListener.getConnection();
-            ps = con.prepareStatement("SELECT id, nom from tst.sport ORDER BY nom");
+            ps = con.prepareStatement("SELECT id, nom from sport ORDER BY nom");
             rs = ps.executeQuery();
 
             // Test de la validité de nos données (on regarde si notre résultat n'est pas vide
@@ -63,7 +67,24 @@ public class CreateTournamentServlet extends HttpServlet {
         String nom = req.getParameter("nom-tournoi");
         String visibility = req.getParameter("visibility");
         String date = req.getParameter("date-debut");
+        System.out.println(date);
+
         String sport = req.getParameter("sport");
+
+        Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
+
+        // Conversion format date
+        DateFormat date2=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+
+        java.util.Date date3= null;
+        try {
+            date3 = date2.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        java.sql.Timestamp date4=new Timestamp(date3.getTime());
+
+
 
         // On crée nos attributs pour la base de données
         Connection con;
@@ -76,8 +97,9 @@ public class CreateTournamentServlet extends HttpServlet {
             ps.setString(1, nom);
             ps.setInt(2, Integer.parseInt(sport));
             ps.setBoolean(3, visibility.equals("public"));
-            ps.setDate(4, Date.valueOf(date));
-            ps.setInt(5, Integer.parseInt("1"));
+            ps.setTimestamp(4, date4);
+            ps.setInt(5, user.getId());
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
