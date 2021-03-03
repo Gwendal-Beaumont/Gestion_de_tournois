@@ -1,5 +1,8 @@
+package fr.imt.cepi.bean;
+
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Tournoi implements Serializable {
@@ -11,18 +14,18 @@ public class Tournoi implements Serializable {
     private int id;
     private String nom_tournoi;
     private ArrayList<Equipe> liste_equipes;
-    private ArrayList<Match> liste_matches;
+    private ArrayList<Match> ordre_matches;
     private int id_sport;
     private Boolean visibility;
-    private LocalDate date;
+    private LocalDateTime date;
     private int proprietaire;
 
     // Constructeur
-    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDate date, int proprietaire){
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire) {
         this.id = id;
         this.nom_tournoi = nom_tournoi;
         this.liste_equipes = liste_equipes;
-        liste_matches = new ArrayList<Match>();
+        this.ordre_matches = new ArrayList<>();
         this.id_sport = id_sport;
         this.visibility = visibility;
         this.date = date;
@@ -34,10 +37,9 @@ public class Tournoi implements Serializable {
     /**
      * Setter permettant de définir la liste de matches du tournoi.
      *
-     * @param matches
      */
     public void setMatches(ArrayList<Match> matches) {
-        this.liste_matches = matches;
+        this.ordre_matches = matches;
     }
 
     /**
@@ -45,14 +47,13 @@ public class Tournoi implements Serializable {
      *
      * @return ArrayList
      */
-    public ArrayList getMatches() {
-        return liste_matches;
+    public ArrayList<Match> getMatches() {
+        return ordre_matches;
     }
 
     /**
      * Setter permettant de définir la liste des équipes du tournoi.
      *
-     * @param equipes
      */
     public void setEquipes(ArrayList<Equipe> equipes) {
         this.liste_equipes = equipes;
@@ -63,14 +64,13 @@ public class Tournoi implements Serializable {
      *
      * @return ArrayList
      */
-    public ArrayList getEquipes() {
+    public ArrayList<Equipe> getEquipes() {
         return liste_equipes;
     }
 
     /**
      * Setter permettant de définir le nom du tournoi.
      *
-     * @param nom
      */
     public void setNom_tournoi(String nom) {
         this.nom_tournoi = nom;
@@ -85,5 +85,17 @@ public class Tournoi implements Serializable {
         return nom_tournoi;
     }
 
-
+    @Override
+    public String toString() {
+        return "Tournoi{" +
+                "id=" + id +
+                ", nom_tournoi='" + nom_tournoi + '\'' +
+                ", liste_equipes=" + liste_equipes +
+                ", ordre_matches=" + ordre_matches +
+                ", id_sport=" + id_sport +
+                ", visibility=" + visibility +
+                ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
+                ", proprietaire=" + proprietaire +
+                '}';
+    }
 }
