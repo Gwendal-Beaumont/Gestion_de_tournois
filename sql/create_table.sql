@@ -291,3 +291,6 @@ insert into sport (nom)
 values ('Volleyball');
 insert into sport (nom)
 values ('Waterpolo');
+
+ALTER TABLE tst.utilisateur CHANGE nom username varchar (20);
+ALTER TABLE tst.utilisateur CHANGE login email varchar (20);
