@@ -1,20 +1,40 @@
 <%@ page pageEncoding="UTF-8" %>
 <header>
-    <a href="${pageContext.request.contextPath}/"><img class="logo"
-                                                       src="${pageContext.request.contextPath}/images/logo_white_48pt.svg"
-                                                       alt="logo"></a>
+    <a href="<c:url value="/"/>"><img class="logo"
+                                      src="<c:url value="/images/logo_white_48pt.svg"/>"
+                                      alt="logo"></a>
     <nav>
         <ul class="nav__links">
-            <li><a href="${pageContext.request.contextPath}/Home">Accueil</a></li>
-            <li><a href="#">Tournois publics</a></li>
-            <li><a href="${pageContext.request.contextPath}/jsp/about.jsp">&Agrave; propos</a></li>
+            <c:choose>
+                <c:when test="${utilisateur.getUsername() == null}">
+                    <li><a href="<c:url value="/"/>">Accueil</a></li>
+                </c:when>
+                <c:otherwise>
+                    <li><a href="<c:url value="/Home"/>">Accueil</a></li>
+                </c:otherwise>
+            </c:choose>
+            <li><a href="<c:url value="/create_tournament"/>">Tournois publics</a></li>
+            <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
         </ul>
     </nav>
-    <div class="login_register_navbar">
-        <a class="cta" href="${pageContext.request.contextPath}/Login">
-            <button>Connexion</button>
-        </a>
-        <a class="register_navbar" href="${pageContext.request.contextPath}/Register">S'enregistrer</a>
-    </div>
+
+    <c:choose>
+        <c:when test="${utilisateur.getUsername() == null}">
+            <div class="login_register_navbar">
+                <a class="cta" href="<c:url value="/Login"/>">
+                    <button>Connexion</button>
+                </a>
+                <a class="register_navbar" href="<c:url value="/Register"/>">S'enregistrer</a>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="login_register_navbar">
+                <a class="cta" href="<c:url value="Logout"/>">
+                    <button>Déconnexion</button>
+                </a>
+            </div>
+        </c:otherwise>
+    </c:choose>
+
 </header>
 <section id="body_text">

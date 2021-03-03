@@ -1,10 +1,8 @@
 package fr.imt.cepi.bean;
 
-import fr.imt.cepi.bean.Equipe;
-import fr.imt.cepi.bean.Match;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Tournoi implements Serializable {
@@ -19,11 +17,12 @@ public class Tournoi implements Serializable {
     private ArrayList<Match> ordre_matches;
     private int id_sport;
     private Boolean visibility;
-    private LocalDate date;
+    private LocalDateTime date;
     private int proprietaire;
+    private int etat; //0 inscriptions ouvertes / 1 inscriptions fermees / 2 tournoi démarré
 
     // Constructeur
-    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDate date, int proprietaire) {
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire) {
         this.id = id;
         this.nom_tournoi = nom_tournoi;
         this.liste_equipes = liste_equipes;
@@ -32,6 +31,7 @@ public class Tournoi implements Serializable {
         this.visibility = visibility;
         this.date = date;
         this.proprietaire = proprietaire;
+        this.etat = etat;
     }
 
     //Méthodes
@@ -86,4 +86,55 @@ public class Tournoi implements Serializable {
     public String getNom_tournoi() {
         return nom_tournoi;
     }
+
+    @Override
+    public String toString() {
+        return "Tournoi{" +
+                "id=" + id +
+                ", nom_tournoi='" + nom_tournoi + '\'' +
+                ", liste_equipes=" + liste_equipes +
+                ", ordre_matches=" + ordre_matches +
+                ", id_sport=" + id_sport +
+                ", visibility=" + visibility +
+                ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
+                ", proprietaire=" + proprietaire +
+                '}';
+    }
+
+    /**
+     * Méthode permettant de fermer les inscriptions
+     */
+    public void fermerInscriptions(){
+        this.etat = 1;
+    }
+
+    /**
+     * Méthode permettant d'ouvrir les inscriptions
+     */
+    public void ouvrirInscriptions(){
+        this.etat = 0;
+    }
+
+    /**
+     * Méthode permettant de changer l'état des inscriptions si le tournoi n'a pas encore démarré
+     */
+    public void changerEtat() {
+        if (this.etat < 2){ //on verifie que le tournoi n'ait pas déjà démarré le tournoi
+            if (this.etat ==0){ //si les inscriptions sont ouvertes, on les ferme
+                this.etat = 1;
+            } else {            //sinon on les ouvre
+                this.etat = 0;
+            }
+        } else {
+            //afficher que le tournoi a déjà démarré et qu'on ne peut pas ouvrir les inscriptions
+        }
+    }
+
+    /**
+     * Méthode qui permet de changer l'état du tournoi pour le démarrer (qu'il soit ouvert ou fermé)
+     */
+    public void demarrerTournoi(){
+        this.etat = 2;
+    }
+
 }

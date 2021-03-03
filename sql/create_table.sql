@@ -13,21 +13,13 @@ GRANT ALL PRIVILEGES ON tst.* TO
 -- Création de la table des utilisateurs
 CREATE TABLE tst.utilisateur
 (
-    id       int         NOT NULL AUTO_INCREMENT,
-    nom      varchar(20) NOT NULL,
-    login    varchar(20) NOT NULL,
-    password varchar(20) NOT NULL,
+    id           int         NOT NULL AUTO_INCREMENT,
+    username     varchar(20) NOT NULL,
+    email        varchar(20) NOT NULL,
+    password     varchar(20) NOT NULL,
+    role_general int         NOT NULL,
     PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- Rajout du rôle général, changement du nom en username et du login en email pour l'utilisateur
-ALTER TABLE tst.utilisateur ADD (role_general int DEFAULT 0);
-ALTER TABLE tst.utilisateur CHANGE nom username varchar (20);
-ALTER TABLE tst.utilisateur CHANGE login email varchar (20);
-
--- REVERT
-ALTER TABLE tst.utilisateur CHANGE username nom varchar (20);
-ALTER TABLE tst.utilisateur CHANGE email login varchar (20);
+);
 
 -- Création de la table des sports
 CREATE TABLE tst.sport
@@ -35,7 +27,7 @@ CREATE TABLE tst.sport
     id  int         NOT NULL AUTO_INCREMENT,
     nom varchar(50) NOT NULL,
     CONSTRAINT pkSport PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 -- Création de la table des équipes
 CREATE TABLE tst.equipe
@@ -43,7 +35,7 @@ CREATE TABLE tst.equipe
     id  int         NOT NULL AUTO_INCREMENT,
     nom varchar(50) NOT NULL,
     CONSTRAINT pkEquipe PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 -- Création de la table des tournois
 CREATE TABLE tst.tournoi
@@ -57,7 +49,7 @@ CREATE TABLE tst.tournoi
     CONSTRAINT pkTournoi PRIMARY KEY (id),
     CONSTRAINT fkSportTournoi FOREIGN KEY (id_sport) REFERENCES sport (id),
     CONSTRAINT fkTournoiProprietaire FOREIGN KEY (proprietaire) REFERENCES utilisateur (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 -- Création de la table des matchs
 CREATE TABLE tst.match
@@ -73,7 +65,7 @@ CREATE TABLE tst.match
     CONSTRAINT fkMatchTournoi FOREIGN KEY (id_tournoi) REFERENCES tournoi (id),
     CONSTRAINT fkMatchEquipe1 FOREIGN KEY (equipe1) REFERENCES equipe (id),
     CONSTRAINT fkMatchEquipe2 FOREIGN KEY (equipe2) REFERENCES equipe (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 -- Création de la table d'association tournoi/équipe
 CREATE TABLE tst.tournoi_equipe
@@ -82,7 +74,7 @@ CREATE TABLE tst.tournoi_equipe
     id_equipe  int NOT NULL,
     CONSTRAINT fkTournoi FOREIGN KEY (id_tournoi) REFERENCES tournoi (id),
     CONSTRAINT fkEquipe FOREIGN KEY (id_equipe) REFERENCES equipe (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 -- Création de la table des administrateurs
 CREATE TABLE tst.administrateur
@@ -91,7 +83,7 @@ CREATE TABLE tst.administrateur
     id_joueur  int NOT NULL,
     CONSTRAINT fkAdminTournoi FOREIGN KEY (id_tournoi) REFERENCES tournoi (id),
     CONSTRAINT fkAdminJoueur FOREIGN KEY (id_joueur) REFERENCES utilisateur (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 -- Création de la table d'association utilisateur/équipe
 CREATE TABLE tst.equipe_joueur
@@ -101,7 +93,7 @@ CREATE TABLE tst.equipe_joueur
     role      int,
     CONSTRAINT fkEquipeEquipe FOREIGN KEY (id_equipe) REFERENCES equipe (id),
     CONSTRAINT fkEquipeJoueur FOREIGN KEY (id_joueur) REFERENCES utilisateur (id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+);
 
 insert into sport (nom)
 values ('Acrosport');
@@ -299,3 +291,6 @@ insert into sport (nom)
 values ('Volleyball');
 insert into sport (nom)
 values ('Waterpolo');
+
+ALTER TABLE tst.utilisateur CHANGE nom username varchar (20);
+ALTER TABLE tst.utilisateur CHANGE login email varchar (20);

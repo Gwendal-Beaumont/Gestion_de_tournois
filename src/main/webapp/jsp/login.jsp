@@ -12,7 +12,7 @@
     <%@ include file="template/alerts.jsp" %>
     <form action="Login" method="post">
 
-        <input name="login" type="text" class="form-control"
+        <input name="username" type="text" class="form-control"
                placeholder="Username" value="" required/>
         <input name="password" type="password" class="form-control"
                placeholder="Mot de passe" value="" required/>
