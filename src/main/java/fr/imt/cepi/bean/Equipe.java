@@ -66,10 +66,13 @@ public class Equipe {
     }
 
     /**
-     * Méthode permettant d'ajouter un joueur à une équipe
+     * Méthode permettant d'ajouter un joueur à une équipe incomplète
      * @param id_joueur l'identifiant du joueur en question
      */
     public void ajouterJoueur(Utilisateur id_joueur){
-        joueurs_equipe.add(id_joueur);
+        if (!equipeComplete()) {
+            joueurs_equipe.add(id_joueur);
+        }
+        //sinon, afficher equipe complete
     }
 }
