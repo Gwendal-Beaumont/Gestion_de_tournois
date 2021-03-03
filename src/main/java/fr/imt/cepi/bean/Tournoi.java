@@ -19,6 +19,7 @@ public class Tournoi implements Serializable {
     private Boolean visibility;
     private LocalDateTime date;
     private int proprietaire;
+    private int etat; //0 inscriptions ouvertes / 1 inscriptions fermees / 2 tournoi démarré
 
     // Constructeur
     public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire) {
@@ -30,6 +31,7 @@ public class Tournoi implements Serializable {
         this.visibility = visibility;
         this.date = date;
         this.proprietaire = proprietaire;
+        this.etat = etat;
     }
 
     //Méthodes
@@ -98,4 +100,44 @@ public class Tournoi implements Serializable {
                 ", proprietaire=" + proprietaire +
                 '}';
     }
+
+    /**
+     * Méthode permettant de fermer les inscriptions
+     */
+    public void fermerInscriptions(){
+        this.etat = 1;
+    }
+
+    /**
+     * Méthode permettant d'ouvrir les inscriptions
+     */
+    public void ouvrirInscriptions(){
+        this.etat = 0;
+    }
+
+    /**
+     * Méthode permettant de changer l'état des inscriptions si le tournoi n'a pas encore démarré
+     */
+    public void changerEtat() {
+        if (this.etat < 2){ //on verifie que le tournoi n'ait pas déjà démarré le tournoi
+            if (this.etat ==0){ //si les inscriptions sont ouvertes, on les ferme
+                this.etat = 1;
+            } else {            //sinon on les ouvre
+                this.etat = 0;
+            }
+        } else {
+            this.etat = 2;
+            //afficher que le tournoi a déjà démarré et qu'on ne peut pas ouvrir les inscriptions
+        }
+    }
+
+    /**
+     * Méthode qui permet de changer l'état du tournoi pour le démarrer (qu'il soit ouvert ou fermé)
+     */
+    public void demarrerTournoi(){
+        this.etat = 2;
+    }
+
+
+
 }
