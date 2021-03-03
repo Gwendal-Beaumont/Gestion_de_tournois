@@ -126,6 +126,7 @@ public class Tournoi implements Serializable {
                 this.etat = 0;
             }
         } else {
+            this.etat = 2;
             //afficher que le tournoi a déjà démarré et qu'on ne peut pas ouvrir les inscriptions
         }
     }
@@ -136,5 +137,7 @@ public class Tournoi implements Serializable {
     public void demarrerTournoi(){
         this.etat = 2;
     }
+
+
 
 }
