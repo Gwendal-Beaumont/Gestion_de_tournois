@@ -10,8 +10,7 @@ public class Match {
      */
 
     //Attributs
-    private int id_match;
-    private int id_sport;
+    private int id_match, id_tournoi, id_sport;
     private LocalDateTime heure_debut;
     private int duree_match_secondes;
     private int[] score;
@@ -19,7 +18,8 @@ public class Match {
     private boolean en_cours;
 
     //Constructeur
-    public Match(int id_match, int id_sport, LocalDateTime heure_debut, int duree_match_secondes, ArrayList<Equipe> equipes) {
+    public Match(int id_tournoi, int id_match, int id_sport, LocalDateTime heure_debut, int duree_match_secondes, ArrayList<Equipe> equipes) {
+        this.id_tournoi = id_tournoi;
         this.id_match = id_match;
         this.id_sport = id_sport;
         this.heure_debut = heure_debut;
@@ -32,7 +32,16 @@ public class Match {
     //Méthodes
 
     /**
+     * Getter permettant de récupérer l'identifiant du tournoi associé.
+     * @return int
+     */
+    public int getId_tournoi() {
+        return id_tournoi;
+    }
+
+    /**
      * Getter permettant d'obtenir l'identifiant du match.
+     *
      * @return int
      */
     public int getId_match() {
@@ -41,6 +50,7 @@ public class Match {
 
     /**
      * Getter permettant d'obtenir l'horaire de début du match.
+     *
      * @return LocalDateTime
      */
     public LocalDateTime getHeure_debut() {
@@ -63,9 +73,10 @@ public class Match {
 
     /**
      * Getter permettant de récupérer le score actuel du match.
+     *
      * @return int[]
      */
-    public int[] getScore(){
+    public int[] getScore() {
         return this.score;
     }
 
@@ -78,14 +89,16 @@ public class Match {
 
     /**
      * Getter permettant d'obtenir les équipes compostant le match.
+     *
      * @return ArrayList<Equipe>
      */
-    public ArrayList<Equipe> getEquipes(){
+    public ArrayList<Equipe> getEquipes() {
         return this.equipes;
     }
 
     /**
      * Getter permettant de savoir si le match est en cours ou pas.
+     *
      * @return boolean
      */
     public boolean getEn_cours() {
@@ -102,7 +115,7 @@ public class Match {
     /**
      * Setter permettant d'interrompre ou de clôturer le match.
      */
-    public void stop(){
+    public void stop() {
         this.en_cours = false;
     }
 
