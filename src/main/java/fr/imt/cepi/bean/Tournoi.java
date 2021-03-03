@@ -1,10 +1,8 @@
 package fr.imt.cepi.bean;
 
-import fr.imt.cepi.bean.Equipe;
-import fr.imt.cepi.bean.Match;
-
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Tournoi implements Serializable {
@@ -19,11 +17,11 @@ public class Tournoi implements Serializable {
     private ArrayList<Match> ordre_matches;
     private int id_sport;
     private Boolean visibility;
-    private LocalDate date;
+    private LocalDateTime date;
     private int proprietaire;
 
     // Constructeur
-    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDate date, int proprietaire) {
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire) {
         this.id = id;
         this.nom_tournoi = nom_tournoi;
         this.liste_equipes = liste_equipes;
@@ -85,5 +83,19 @@ public class Tournoi implements Serializable {
      */
     public String getNom_tournoi() {
         return nom_tournoi;
+    }
+
+    @Override
+    public String toString() {
+        return "Tournoi{" +
+                "id=" + id +
+                ", nom_tournoi='" + nom_tournoi + '\'' +
+                ", liste_equipes=" + liste_equipes +
+                ", ordre_matches=" + ordre_matches +
+                ", id_sport=" + id_sport +
+                ", visibility=" + visibility +
+                ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
+                ", proprietaire=" + proprietaire +
+                '}';
     }
 }

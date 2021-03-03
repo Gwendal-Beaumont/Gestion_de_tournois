@@ -33,13 +33,13 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // récupérations des paramètres de la requêtes : ici les champs input du formulaire
-        String login = request.getParameter("login");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         // Quelques contrôles
         String errorMsg = null;
-        if (login == null || login.equals("")) {
-            errorMsg = "Le login est obligatoire";
+        if (username == null || username.equals("")) {
+            errorMsg = "Le username est obligatoire";
         }
         if (password == null || password.equals("")) {
             errorMsg = "Le mot de passe est obligatoire";
@@ -56,13 +56,13 @@ public class LoginServlet extends HttpServlet {
             try {
                 con = AppContextListener.getConnection();
                 ps = con.prepareStatement(
-                        "select id, nom, login from utilisateur where login=? and password=? limit 1");
-                ps.setString(1, login);
+                        "select id, username, email from tst.utilisateur where username=? and password=? limit 1");
+                ps.setString(1, username);
                 ps.setString(2, password);
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     // Si on l'a trouvé, on l'indique dans le log
-                    Utilisateur utilisateur = new Utilisateur(rs.getString("nom"), rs.getString("login"),
+                    Utilisateur utilisateur = new Utilisateur(rs.getString("username"), rs.getString("email"),
                             rs.getInt("id"));
                     logger.info("Utilisateur trouvé :" + utilisateur);
                     // Puis on met l'objet utilisateur dans la session
@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect("Home");
                 } else {
                     // Sinon, message d'erreur dans la requête pour affichage dans la vue login.jsp.
-                    logger.error("Utilisateur introuvable : " + login);
+                    logger.error("Utilisateur introuvable : " + username);
                     request.setAttribute("errorMessage", "Mauvais nom d'utilisateur ou mot de passe.");
                     getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                 }

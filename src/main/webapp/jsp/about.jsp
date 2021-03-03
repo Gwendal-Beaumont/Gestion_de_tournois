@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <%@ include file="template/head_import.jsp" %>
@@ -65,8 +66,6 @@
         purus mauris et orci. Donec ut congue elit. Aenean ultricies turpis id nulla rhoncus finibus.
     </p>
 </section>
-
-<div class="perseverance-landed-on-mars"></div>
 
 <%@ include file="template/footer.jsp" %>
 </body>

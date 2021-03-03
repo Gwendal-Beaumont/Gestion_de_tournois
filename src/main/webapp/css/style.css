@@ -15,7 +15,7 @@ header {
     background-color: #0a0a0a;
 }
 
-li, a, button {
+li, a, button, .btnSubmit {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -45,7 +45,7 @@ li, a, button {
     color: #d32f2f;
 }
 
-button {
+button, .btnSubmit {
     padding: 9px 25px;
     background-color: rgba(211, 47, 47, 1);
     border: none;
@@ -54,7 +54,7 @@ button {
     transition: all 0.4s ease 0s;
 }
 
-button:hover {
+button:hover, .btnSubmit:hover {
     background-color: rgba(211, 47, 47, 0.6);
 }
 
@@ -140,4 +140,12 @@ hr {
 
 .tabulation {
     padding-left: 40px;
+}
+
+.crt-tournament-box h1 {
+    margin-bottom: 20px;
+}
+
+.crt-tournament-box input[type=text], .crt-tournament-box input[type=radio], .crt-tournament-box input[type=datetime-local], .crt-tournament-box select {
+    margin: 10px 0;
 }

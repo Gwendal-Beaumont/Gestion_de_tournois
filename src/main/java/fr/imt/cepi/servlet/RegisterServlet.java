@@ -29,19 +29,19 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Récupération des valeurs des champs du formulaire
-        String login = request.getParameter("login");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String nom = request.getParameter("nom");
+        String email = request.getParameter("email");
         // Quelques contrôles
         String errorMsg = null;
-        if (login == null || login.equals("")) {
-            errorMsg = "Le login est obligatoire.";
+        if (username == null || username.equals("")) {
+            errorMsg = "Le username est obligatoire.";
         }
         if (password == null || password.equals("")) {
             errorMsg = "Le mot de passe est obligatoire";
         }
-        if (nom == null || nom.equals("")) {
-            errorMsg = "Le nom est obligatoire";
+        if (email == null || email.equals("")) {
+            errorMsg = "L'email est obligatoire";
         }
         // S'il y a des erreurs, on met le message en attribut de la requête et on renvoie sur la page de login
         if (errorMsg != null) {
@@ -52,12 +52,12 @@ public class RegisterServlet extends HttpServlet {
             PreparedStatement ps = null;
             try {
                 con = AppContextListener.getConnection();
-                ps = con.prepareStatement("insert into utilisateur(nom, login, password) values (?,?,?)");
-                ps.setString(1, nom);
-                ps.setString(2, login);
+                ps = con.prepareStatement("insert into tst.utilisateur(username, email, password) values (?,?,?)");
+                ps.setString(1, username);
+                ps.setString(2, email);
                 ps.setString(3, password);
                 ps.execute();
-                logger.info("Utilisateur enregistré avec le login " + login);
+                logger.info("Utilisateur enregistré avec le username " + username);
                 // On affiche la page d'accueil
                 request.setAttribute("message",
                         "Enregistrement effectué avec succès, veuillez vous identifier.");

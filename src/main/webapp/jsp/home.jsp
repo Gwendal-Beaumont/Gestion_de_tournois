@@ -1,27 +1,25 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
     <%@ include file="template/head_import.jsp" %>
-    <title>home.jsp - ${utilisateur.nom}</title>
+    <title>home.jsp - ${utilisateur.getUsername()}</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
 <%@include file="template/navbar.jsp" %>
+
+<!-- Test de redirection pour vérifier si un utilisateur est connecté -->
+<c:if test="${utilisateur.getUsername() == null}">
+    <c:redirect url="/">Redirect</c:redirect>
+</c:if>
+
 <div class="jumbotron">
-    <h1 class="display-4">Bonjour ${utilisateur.getLogin()},
-    </h1>
-    <c:forEach items="${listeTournoisJSP}" var="unTournois">
-        <div>${unTournois} pour ** ${utilisateur.getLogin()}</div>
-    </c:forEach>
-
-    <div>Premier test, le sport associé à l'id 1 est : ${sport} !</div>
+    <h1 class="display-4">Bonjour ${utilisateur.getUsername()},</h1>
     <br>
-    <a href="<c:url value="Logout"/>">Déconnexion</a>
-    <br/>
-    <a href="create_tournament.jsp"> Créer mon tournoi </a>
-
-
+    <p>Historique des tournois pour ${utilisateur.getUsername()} en cours :</p>
+    <c:forEach items="${listeTournois}" var="tournoi">
+        <p>a<br></p>
+    </c:forEach>
 
 </div>
 

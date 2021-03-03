@@ -1,5 +1,7 @@
 package fr.imt.cepi.servlet;
 
+import fr.imt.cepi.bean.Sport;
+import fr.imt.cepi.servlet.listeners.AppContextListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 @WebServlet("/create_tournament")
 public class CreateTournamentServlet extends HttpServlet {
@@ -17,16 +20,67 @@ public class CreateTournamentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
+
+        // Attributs de connexion à la base SQL
+        Connection con;
+        PreparedStatement ps;
+        ResultSet rs;
+
+        // Tentative de connexion à la base de données
+        try {
+            // Annonce dans le logger de la tentative de récupération des données
+            logger.info("Fetching all sports data");
+            con = AppContextListener.getConnection();
+            ps = con.prepareStatement("SELECT id, nom from tst.sport ORDER BY nom");
+            rs = ps.executeQuery();
+
+            // Test de la validité de nos données (on regarde si notre résultat n'est pas vide
+            if (rs.next()) {
+                // On indique dans le log un accès réussi aux données
+                logger.info("Fetched all sports data");
+                // On crée notre Arrays de sports
+                ArrayList<Sport> listeDesSports = new ArrayList<>();
+                rs.beforeFirst();
+                while (rs.next()) {
+                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom")));
+                }
+                req.setAttribute("sports", listeDesSports);
+            }
+            con.close();
+            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
+        } catch (SQLException e) {
+            // Sinon, log de l'erreur et renvoi sur la vue login.jsp avec un message d'erreur
+            logger.error("Problème d'accès à la base de données : ", e);
+            req.setAttribute("errorMessage", "Erreur technique : veuillez contacter l'administrateur de l'application.");
+            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String nom=req.getParameter("name");
-       String visibility=  req.getParameter("visibility");
-       System.out.println(visibility);
-       logger.info("boolean:"+visibility);
-       String date=req.getParameter("date");
+
+        // On récupère les champs du formulaire de création de tournois
+        String nom = req.getParameter("nom-tournoi");
+        String visibility = req.getParameter("visibility");
+        String date = req.getParameter("date-debut");
+        String sport = req.getParameter("sport");
+
+        // On crée nos attributs pour la base de données
+        Connection con;
+        PreparedStatement ps;
+
+        // On tente d'envoyer le tournoi à la base de données
+        try {
+            con = AppContextListener.getConnection();
+            ps = con.prepareStatement("INSERT INTO tst.tournoi(nom, id_sport, visibility, date_debut, proprietaire) VALUES (?, ?, ?, ?, ?)");
+            ps.setString(1, nom);
+            ps.setInt(2, Integer.parseInt(sport));
+            ps.setBoolean(3, visibility.equals("public"));
+            ps.setDate(4, Date.valueOf(date));
+            ps.setInt(5, Integer.parseInt("1"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
