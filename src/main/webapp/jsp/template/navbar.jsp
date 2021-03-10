@@ -33,7 +33,7 @@
                 <a class="cta" href="<c:url value="Logout"/>">
                     <button>Déconnexion</button>
                 </a>
-                <a class="cta" href="<c:url value="/jsp/profil.jsp"/>">
+                <a class="cta" href="<c:url value="/Profil"/>">
 
                     <button> Profil </button>
                 </a>
