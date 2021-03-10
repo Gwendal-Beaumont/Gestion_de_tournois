@@ -42,7 +42,7 @@
             <label for="prive">Privé</label>
         </div>
 
-        <input type="submit" class="btnSubmit" value="Créer mon tournoi (disabled)" disabled/>
+        <input type="submit" class="btnSubmit" value="Créer mon tournoi"/>
     </form>
 </div>
 
