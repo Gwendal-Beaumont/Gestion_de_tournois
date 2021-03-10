@@ -52,7 +52,7 @@ public class RegisterServlet extends HttpServlet {
             PreparedStatement ps = null;
             try {
                 con = AppContextListener.getConnection();
-                ps = con.prepareStatement("insert into tst.utilisateur(username, email, password) values (?,?,?)");
+                ps = con.prepareStatement("insert into utilisateur(username, email, password) values (?,?,?)");
                 ps.setString(1, username);
                 ps.setString(2, email);
                 ps.setString(3, password);
