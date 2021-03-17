@@ -12,6 +12,8 @@ import java.io.IOException;
 public class ManageTournamentsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id_tournament = req.getParameter("id_tournament");
+        req.setAttribute("id_tournament", id_tournament);
         getServletContext().getRequestDispatcher("/jsp/manage_tournaments.jsp").forward(req, resp);
     }
 

@@ -42,7 +42,9 @@
             <label for="prive">Privé</label>
         </div>
 
-        <input type="submit" class="btnSubmit" value="Créer mon tournoi"/>
+        <input type="submit" class="btnSubmit" value="Créer mon tournoi"
+               <c:if test="${utilisateur.getUsername() == null}">disabled</c:if>/>
+
     </form>
 </div>
 

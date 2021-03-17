@@ -1,14 +1,14 @@
 -- Création de la base de données
 CREATE
-DATABASE tst CHARACTER SET utf8 COLLATE utf8_general_ci;
+    DATABASE tst CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 -- Création de l'utilisateur tst
 CREATE
-USER 'tst'@'localhost' IDENTIFIED BY 'tst';
+    USER 'tst'@'localhost' IDENTIFIED BY 'tst';
 
 -- Authorisations
 GRANT ALL PRIVILEGES ON tst.* TO
-'tst'@'localhost';
+    'tst'@'localhost';
 
 -- Création de la table des utilisateurs
 CREATE TABLE tst.utilisateur
@@ -17,7 +17,7 @@ CREATE TABLE tst.utilisateur
     username     varchar(20) NOT NULL,
     email        varchar(20) NOT NULL,
     password     varchar(20) NOT NULL,
-    role_general int         NOT NULL,
+    role_general int         NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
 

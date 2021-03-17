@@ -20,6 +20,9 @@
         <a href="<c:url value="Register"/>" class="ForgetPwd">Pas encore enregistré ?</a>
 
     </form>
+    <br>
+    <br>
+    <a href="<c:url value="/"/>">Retour vers la page d'accueil</a>
 </div>
 </body>
 </html>
