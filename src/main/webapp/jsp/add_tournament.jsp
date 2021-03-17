@@ -14,6 +14,22 @@
 </head>
 <body>
     <%@include file="template/navbar.jsp"%>
+    <h1> sélectionner votre équipe </h1>
+    <form action="joinTeam" method="post">
+
+        <select name="team" id="team" required>
+
+            <option value="Sélectionner une équipe" disabled selected hidden>Sélectionner une équipe</option>
+            <c:forEach items="${sports}" var="sport">
+                <option value="${sport.getId()}">${sport.getNom()}</option>
+            </c:forEach>
+
+        </select>
+
+
+
+
+    </form>
 
 
     <%@ include file="template/footer.jsp" %>
