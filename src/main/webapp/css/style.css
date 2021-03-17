@@ -77,6 +77,12 @@ header {
 .jumbotron a {
     color: #d32f2f;
 }
+/* Prévisualisation d'un tournoi */
+
+p{
+    border: 2px solid rebeccapurple;
+    padding: .5em;
+}
 
 /* Affichage tableau */
 
