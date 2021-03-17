@@ -4,11 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Match {
-
     /**
      * Classe définissant les principaux paramètres d'un match donné.
      */
-
     //Attributs
     private int id_match, id_tournoi, id_sport;
     private LocalDateTime heure_debut;
@@ -27,12 +25,41 @@ public class Match {
         this.equipes = equipes;
         this.score = new int[equipes.size()];
         this.etat = "en_attente";
-
     }
+
+    public Match(int id_tournoi, int id_match) {
+        this.id_match = id_match;
+        this.id_tournoi = id_tournoi;
+        this.score = new int[equipes.size()];
+        this.etat = "en_attente";
+    }
+
+    public Match(int id_tournoi, ArrayList<Equipe> equipes) {
+        this.id_tournoi = id_tournoi;
+        this.equipes = equipes;
+        this.score = new int[equipes.size()];
+        this.etat = "en_attente";
+    }
+
     //Méthodes
+    public void addEquipe(Equipe eq) {
+        equipes.add(eq);
+    }
+
+    public Equipe getWinner() {
+        if (score[0] > score[1]) {
+            return equipes.get(0);
+        } else if (score[1] > score[0]) {
+            return equipes.get(1);
+        } else System.out.println("Egaux");
+        return null;
+    }
+
+    //Getter & Setter
 
     /**
      * Getter permettant de récupérer l'identifiant du tournoi associé.
+     *
      * @return int
      */
     public int getId_tournoi() {
