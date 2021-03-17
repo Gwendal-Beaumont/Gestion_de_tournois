@@ -47,7 +47,7 @@
                 </button>
                 <div class="dropdown-content">
                     <a href="<c:url value="/create_tournament"/>">Créer</a>
-                    <a href="<c:url value="/add_tournament"/>">Rejoindre</a>
+                    <a href="<c:url value="/AddTournament"/>">Rejoindre</a>
                 </div>
              </div>
     </div>
@@ -63,4 +63,3 @@
 
 
 </header>
-<section id="body_text">
