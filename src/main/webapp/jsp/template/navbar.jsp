@@ -13,7 +13,7 @@
                     <li><a href="<c:url value="/Home"/>">Accueil</a></li>
                 </c:otherwise>
             </c:choose>
-            <li><a href="<c:url value="/ManageTournaments"/>">Tournois</a></li>
+            <li><a href="<c:url value="/MyTournaments"/>">Tournois</a></li>
             <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
         </ul>
     </nav>
