@@ -14,6 +14,7 @@
                 </c:otherwise>
             </c:choose>
             <li><a href="<c:url value="/create_tournament"/>">Créer mon tournoi</a></li>
+            <li><a href="<c:url value="/AddTournament"/>">Rejoindre un tournoi</a></li>
             <li><a href="<c:url value="/ManageTournaments"/>">Tournois</a></li>
             <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
         </ul>

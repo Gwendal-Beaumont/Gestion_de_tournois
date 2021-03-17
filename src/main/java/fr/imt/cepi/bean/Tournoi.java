@@ -38,7 +38,6 @@ public class Tournoi implements Serializable {
 
     /**
      * Setter permettant de définir la liste de matches du tournoi.
-     *
      */
     public void setMatches(ArrayList<Match> matches) {
         this.ordre_matches = matches;
@@ -55,7 +54,6 @@ public class Tournoi implements Serializable {
 
     /**
      * Setter permettant de définir la liste des équipes du tournoi.
-     *
      */
     public void setEquipes(ArrayList<Equipe> equipes) {
         this.liste_equipes = equipes;
@@ -72,7 +70,6 @@ public class Tournoi implements Serializable {
 
     /**
      * Setter permettant de définir le nom du tournoi.
-     *
      */
     public void setNom_tournoi(String nom) {
         this.nom_tournoi = nom;
@@ -85,6 +82,31 @@ public class Tournoi implements Serializable {
      */
     public String getNom_tournoi() {
         return nom_tournoi;
+    }
+
+    /**
+     * Getter permettant de récupérer le sport du tournoi
+     *
+     * @return int id du sport
+     */
+    public int getId_sport() {
+        return id_sport;
+    }
+
+
+    /**
+     * Getter permettant de récupérer l'état du tournoi
+     *
+     * @return String etat tournoi
+     */
+    public String getEtat() {
+        if (this.etat == 0) {
+            return "inscriptions en cours";
+        } else if (this.etat == 1) {
+            return "inscriptions fermées";
+        } else {
+            return "tournoi en cours";
+        }
     }
 
     @Override
@@ -104,14 +126,14 @@ public class Tournoi implements Serializable {
     /**
      * Méthode permettant de fermer les inscriptions
      */
-    public void fermerInscriptions(){
+    public void fermerInscriptions() {
         this.etat = 1;
     }
 
     /**
      * Méthode permettant d'ouvrir les inscriptions
      */
-    public void ouvrirInscriptions(){
+    public void ouvrirInscriptions() {
         this.etat = 0;
     }
 
@@ -119,8 +141,8 @@ public class Tournoi implements Serializable {
      * Méthode permettant de changer l'état des inscriptions si le tournoi n'a pas encore démarré
      */
     public void changerEtat() {
-        if (this.etat < 2){ //on verifie que le tournoi n'ait pas déjà démarré le tournoi
-            if (this.etat ==0){ //si les inscriptions sont ouvertes, on les ferme
+        if (this.etat < 2) { //on verifie que le tournoi n'ait pas déjà démarré le tournoi
+            if (this.etat == 0) { //si les inscriptions sont ouvertes, on les ferme
                 this.etat = 1;
             } else {            //sinon on les ouvre
                 this.etat = 0;
@@ -134,10 +156,18 @@ public class Tournoi implements Serializable {
     /**
      * Méthode qui permet de changer l'état du tournoi pour le démarrer (qu'il soit ouvert ou fermé)
      */
-    public void demarrerTournoi(){
+    public void demarrerTournoi() {
         this.etat = 2;
     }
 
 
+    /**
+     * Getter permettant de récupérer l'id du tournoi
+     *
+     * @return int id du tournoi
+     */
+    public int getId() {
+        return id;
+    }
 
 }

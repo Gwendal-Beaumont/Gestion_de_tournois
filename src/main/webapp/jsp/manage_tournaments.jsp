@@ -15,10 +15,11 @@
 <body>
     <%@include file="template/navbar.jsp"%>
     <div class="paramtournoi">
-        <h1>nom_du_tournoi</h1>
-        <h4>sport</h4>
+        <h1>Nom du tournoi : ${tournoi.getNom_tournoi()}</h1>
+        <h2>Code du tournoi : ${tournoi.getId()}</h2>
+        <h4>Sport : ${tournoi.getId_sport()}</h4> <!--il faudra convertir l'int en String-->
         <h4>date_du_tournoi</h4>
-        <h4>etat_du_tournoi</h4>
+        <h4>Etat : ${tournoi.getEtat()}</h4>
         <h4>Equipes</h4>
 
         <table>
