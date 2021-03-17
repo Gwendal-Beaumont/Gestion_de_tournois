@@ -13,15 +13,15 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
-    <%@include file="template/navbar.jsp"%>
-    <div class="paramtournoi">
-        <h1>nom_du_tournoi</h1>
-        <h4>sport</h4>
-        <h4>date_du_tournoi</h4>
-        <h4>etat_du_tournoi</h4>
-        <h4>Equipes</h4>
+<%@include file="template/navbar.jsp" %>
+<div class="paramtournoi">
+    <h1>nom_du_tournoi</h1>
+    <h4>sport</h4>
+    <h4>date_du_tournoi</h4>
+    <h4>etat_du_tournoi</h4>
+    <h4>Equipes</h4>
 
-        <table>
+    <table>
 
         <tr>
             <td>équipe A</td>
@@ -42,8 +42,8 @@
             <td>id_joueur 3</td>
         </tr>
 
-        </table>
-    </div>
-    <%@ include file="template/footer.jsp" %>
+    </table>
+</div>
+<%@ include file="template/footer.jsp" %>
 </body>
 </html>

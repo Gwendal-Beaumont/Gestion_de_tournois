@@ -170,4 +170,8 @@ public class Tournoi implements Serializable {
         return id;
     }
 
+    public Boolean getVisibility() {
+        return visibility;
+    }
+
 }
