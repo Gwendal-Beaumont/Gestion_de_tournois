@@ -30,15 +30,32 @@
             </div>
         </c:when>
         <c:otherwise>
-            <div class="login_register_navbar">
-                <a class="cta" href="<c:url value="Logout"/>">
-                    <button>Déconnexion</button>
-                </a>
-                <a class="cta" href="<c:url value="/Profil"/>">
 
-                    <button> Profil </button>
-                </a>
-            </div>
+    <div class="login_register_navbar">
+
+                <div class="dropdown">
+                    <button class="dropbtn">
+                    <div class="btnSubmit"> Moi </div>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="<c:url value="/Logout"/>">Déconnexion</a>
+                        <a href="<c:url value="/Profil"/>">Profil</a>
+
+                    </div>
+                </div>
+
+            <div class="dropdown">
+                <button class="dropbtn">
+                    <div class="btnSubmit"> Tournoi </div>
+                </button>
+                <div class="dropdown-content">
+                    <a href="<c:url value="/create_tournament"/>">Créer un tournoi</a>
+                </div>
+             </div>
+    </div>
+
+
+
         </c:otherwise>
     </c:choose>
 

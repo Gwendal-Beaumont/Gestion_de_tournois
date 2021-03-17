@@ -30,10 +30,14 @@
         <h4> mot de passe</h4>
     <input name="password" type="password" class="form-control"
            placeholder="Mot de passe" value="" />
+
     <h4> Saisissez votre mot de passe actuel</h4>
         <input name="checkpassword" type="password" class="form-control"
                placeholder="Mot de passe" value="" required />
 
+
+
+    <br/>
     <input type="submit" class="btnSubmit" value="Modifier"/>
 
 
