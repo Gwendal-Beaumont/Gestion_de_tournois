@@ -34,6 +34,13 @@ public class Match {
         this.etat = "en_attente";
     }
 
+    public Match(int id_tournoi, ArrayList<Equipe> equipes) {
+        this.id_tournoi = id_tournoi;
+        this.equipes = equipes;
+        this.score = new int[equipes.size()];
+        this.etat = "en_attente";
+    }
+
     //Méthodes
     public void addEquipe(Equipe eq) {
         equipes.add(eq);
