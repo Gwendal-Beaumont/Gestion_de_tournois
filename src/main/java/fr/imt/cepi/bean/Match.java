@@ -15,7 +15,7 @@ public class Match {
     private int duree_match_secondes;
     private int[] score;
     private ArrayList<Equipe> equipes;
-    private boolean en_cours;
+    private String etat;
 
     //Constructeur
     public Match(int id_tournoi, int id_match, int id_sport, LocalDateTime heure_debut, int duree_match_secondes, ArrayList<Equipe> equipes) {
@@ -26,7 +26,7 @@ public class Match {
         this.duree_match_secondes = duree_match_secondes;
         this.equipes = equipes;
         this.score = new int[equipes.size()];
-        this.en_cours = false;
+        this.etat = "en_attente";
 
     }
     //Méthodes
@@ -99,24 +99,37 @@ public class Match {
     /**
      * Getter permettant de savoir si le match est en cours ou pas.
      *
-     * @return boolean
+     * @return string
      */
-    public boolean getEn_cours() {
-        return this.en_cours;
+    public String getEtat() {
+        return this.etat;
     }
 
     /**
      * Setter permettant de débuter le match ou de relancer le match en pause
      */
-    public void reprise() {
-        this.en_cours = true;
+    public void demarrer() {
+        this.etat = "en_cours";
     }
 
     /**
-     * Setter permettant d'interrompre ou de clôturer le match.
+     * Setter permettant d'interrompre le match
      */
     public void stop() {
-        this.en_cours = false;
+        this.etat = "suspendu";
     }
 
+    /**
+     * Setter permettant de réinitialiser le match comme s'il n'avait pas encore eu lieu
+     */
+    public void reinitialiser() {
+        this.etat = "en_attente";
+    }
+
+    /**
+     * Setter permettant de terminer le match
+     */
+    public void finir() {
+        this.etat = "fini";
+    }
 }
