@@ -22,6 +22,9 @@
         <a href="<c:url value="Login"/>" class="ForgetPwd">Déjà enregistré ?</a>
 
     </form>
+    <br>
+    <br>
+    <a href="<c:url value="/"/>">Retour vers la page d'accueil</a>
 </div>
 </body>
 </html>

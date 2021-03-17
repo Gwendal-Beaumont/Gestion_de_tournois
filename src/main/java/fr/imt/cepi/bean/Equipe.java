@@ -11,7 +11,7 @@ public class Equipe {
     private ArrayList<Utilisateur> joueurs_equipe; //correspond à une liste d'id des joueurs de l'équipe
 
     //Constructeur
-    public Equipe(int id_equipe, String nom_equipe, int nb_joueurs, ArrayList<Utilisateur> joueurs_equipe){
+    public Equipe(int id_equipe, String nom_equipe){
         this.id_equipe = id_equipe;
         this.nom_equipe = nom_equipe;
         this.nb_joueurs = nb_joueurs;

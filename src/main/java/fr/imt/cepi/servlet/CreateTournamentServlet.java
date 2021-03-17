@@ -100,8 +100,10 @@ public class CreateTournamentServlet extends HttpServlet {
             ps.setTimestamp(4, date4);
             ps.setInt(5, user.getId());
             ps.executeUpdate();
+            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp?id_tournament=007").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
+            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
         }
 
     }
