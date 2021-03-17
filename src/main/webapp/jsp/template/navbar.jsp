@@ -13,7 +13,7 @@
                     <li><a href="<c:url value="/Home"/>">Accueil</a></li>
                 </c:otherwise>
             </c:choose>
-            <li><a href="<c:url value="/ManageTournaments"/>">Tournois publics</a></li>
+            <li><a href="<c:url value="/ManageTournaments"/>">Mes tournois</a></li>
             <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
         </ul>
     </nav>
@@ -43,7 +43,7 @@
 
             <div class="dropdown">
                 <button class="dropbtn">
-                    <div class="btnSubmit"> Mes Tournois </div>
+                    <div class="btnSubmit">Nouveau tournoi </div>
                 </button>
                 <div class="dropdown-content">
                     <a href="<c:url value="/create_tournament"/>">Créer</a>
