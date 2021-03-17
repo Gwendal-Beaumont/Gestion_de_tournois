@@ -18,8 +18,7 @@
     <br>
     <p>Historique des tournois pour ${utilisateur.getUsername()} en cours :</p>
     <c:forEach items="${listeTournois}" var="tournoi">
-        <p>${tournoi.getNom_tournoi()}<br>
-        </p>
+        <p>a<br></p>
     </c:forEach>
 
 </div>
