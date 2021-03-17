@@ -8,15 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>add_tournament</title>
+    <title>Rejoindre un tournoi </title>
     <%@ include file="template/head_import.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
     <%@include file="template/navbar.jsp"%>
-    <h1> sélectionner votre équipe </h1>
+    <h1> Entrer un code </h1>
     <form action="joinTeam" method="post">
-
+        <input type="text"> Saisissez le code du tournoi <input/>
         <select name="team" id="team" required>
 
             <option value="Sélectionner une équipe" disabled selected hidden>Sélectionner une équipe</option>

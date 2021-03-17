@@ -25,39 +25,7 @@ public class CreateTournamentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // Attributs de connexion à la base SQL
-        Connection con;
-        PreparedStatement ps;
-        ResultSet rs;
-
-        // Tentative de connexion à la base de données
-        try {
-            // Annonce dans le logger de la tentative de récupération des données
-            logger.info("Fetching all sports data");
-            con = AppContextListener.getConnection();
-            ps = con.prepareStatement("SELECT id, nom from sport ORDER BY nom");
-            rs = ps.executeQuery();
-
-            // Test de la validité de nos données (on regarde si notre résultat n'est pas vide
-            if (rs.next()) {
-                // On indique dans le log un accès réussi aux données
-                logger.info("Fetched all sports data");
-                // On crée notre Arrays de sports
-                ArrayList<Sport> listeDesSports = new ArrayList<>();
-                rs.beforeFirst();
-                while (rs.next()) {
-                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom")));
-                }
-                req.setAttribute("sports", listeDesSports);
-            }
-            con.close();
-            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
-        } catch (SQLException e) {
-            // Sinon, log de l'erreur et renvoi sur la vue login.jsp avec un message d'erreur
-            logger.error("Problème d'accès à la base de données : ", e);
-            req.setAttribute("errorMessage", "Erreur technique : veuillez contacter l'administrateur de l'application.");
-            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
-        }
+        getServletContext().getRequestDispatcher("/jsp/profil.jsp").forward(req, resp);
     }
 
     @Override
