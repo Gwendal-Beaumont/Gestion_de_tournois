@@ -14,7 +14,7 @@
                 </c:otherwise>
             </c:choose>
             <li><a href="<c:url value="/create_tournament"/>">Créer mon tournoi</a></li>
-            <li><a href="<c:url value="/create_tournament"/>">Tournois en cours</a></li>
+            <li><a href="<c:url value="/ManageTournaments"/>">Tournois</a></li>
             <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
         </ul>
     </nav>
@@ -33,7 +33,7 @@
                 <a class="cta" href="<c:url value="Logout"/>">
                     <button>Déconnexion</button>
                 </a>
-                <a class="cta" href="<c:url value="/jsp/profil.jsp"/>">
+                <a class="cta" href="<c:url value="/Profil"/>">
 
                     <button> Profil </button>
                 </a>

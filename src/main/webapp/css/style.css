@@ -78,6 +78,17 @@ header {
     color: #d32f2f;
 }
 
+/* Affichage tableau */
+
+.paramtournoi table {
+    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+}
+
+.paramtournoi td /* Toutes les cellules des tableaux... */
+{
+    border: 10px solid pink; /* auront une bordure de 1px */
+}
+
 /*Footer*/
 
 #footer {
