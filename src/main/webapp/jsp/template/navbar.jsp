@@ -46,7 +46,7 @@
                     <div class="btnSubmit">Nouveau tournoi </div>
                 </button>
                 <div class="dropdown-content">
-                    <a href="<c:url value="/create_tournament"/>">Créer</a>
+                    <a href="<c:url value="/CreateTournament"/>">Créer</a>
                     <a href="<c:url value="/AddTournament"/>">Rejoindre</a>
                 </div>
              </div>

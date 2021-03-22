@@ -18,14 +18,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-@WebServlet("/create_tournament")
+@WebServlet("/CreateTournament")
 public class CreateTournamentServlet extends HttpServlet {
     static Logger logger = LogManager.getLogger(CreateTournamentServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/jsp/profil.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class CreateTournamentServlet extends HttpServlet {
             ps.setTimestamp(4, date4);
             ps.setInt(5, user.getId());
             ps.executeUpdate();
-            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp?id_tournament=007").forward(req, resp);
+            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
             getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
