@@ -20,5 +20,6 @@ public class ManageTournamentsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/jsp/manage_tournaments.jsp").forward(req, resp);
+
     }
 }

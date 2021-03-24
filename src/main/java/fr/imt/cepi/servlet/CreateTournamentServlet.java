@@ -117,5 +117,6 @@ public class CreateTournamentServlet extends HttpServlet {
             getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
         }
         resp.sendRedirect("ManageTournaments?id_tournament=" + id_tournoi);
+
     }
 }

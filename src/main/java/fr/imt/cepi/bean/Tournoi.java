@@ -35,6 +35,59 @@ public class Tournoi implements Serializable {
     }
 
     //Méthodes
+    
+    @Override
+    public String toString() {
+        return "Tournoi{" +
+                "id=" + id +
+                ", nom_tournoi='" + nom_tournoi + '\'' +
+                ", liste_equipes=" + liste_equipes +
+                ", ordre_matches=" + ordre_matches +
+                ", id_sport=" + id_sport +
+                ", visibility=" + visibility +
+                ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
+                ", proprietaire=" + proprietaire +
+                '}';
+    }
+
+    /**
+     * Méthode permettant de fermer les inscriptions
+     */
+    public void fermerInscriptions() {
+        this.etat = 1;
+    }
+
+    /**
+     * Méthode permettant d'ouvrir les inscriptions
+     */
+    public void ouvrirInscriptions() {
+        this.etat = 0;
+    }
+
+    /**
+     * Méthode permettant de changer l'état des inscriptions si le tournoi n'a pas encore démarré
+     */
+    public void changerEtat() {
+        if (this.etat < 2) { //on verifie que le tournoi n'ait pas déjà démarré le tournoi
+            if (this.etat == 0) { //si les inscriptions sont ouvertes, on les ferme
+                this.etat = 1;
+            } else {            //sinon on les ouvre
+                this.etat = 0;
+            }
+        } else {
+            this.etat = 2;
+            //afficher que le tournoi a déjà démarré et qu'on ne peut pas ouvrir les inscriptions
+        }
+    }
+
+    /**
+     * Méthode qui permet de changer l'état du tournoi pour le démarrer (qu'il soit ouvert ou fermé)
+     */
+    public void demarrerTournoi() {
+        this.etat = 2;
+    }
+
+    //Setter & Getter
 
     /**
      * Setter permettant de définir la liste de matches du tournoi.
@@ -108,58 +161,6 @@ public class Tournoi implements Serializable {
             return "tournoi en cours";
         }
     }
-
-    @Override
-    public String toString() {
-        return "Tournoi{" +
-                "id=" + id +
-                ", nom_tournoi='" + nom_tournoi + '\'' +
-                ", liste_equipes=" + liste_equipes +
-                ", ordre_matches=" + ordre_matches +
-                ", id_sport=" + id_sport +
-                ", visibility=" + visibility +
-                ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
-                ", proprietaire=" + proprietaire +
-                '}';
-    }
-
-    /**
-     * Méthode permettant de fermer les inscriptions
-     */
-    public void fermerInscriptions() {
-        this.etat = 1;
-    }
-
-    /**
-     * Méthode permettant d'ouvrir les inscriptions
-     */
-    public void ouvrirInscriptions() {
-        this.etat = 0;
-    }
-
-    /**
-     * Méthode permettant de changer l'état des inscriptions si le tournoi n'a pas encore démarré
-     */
-    public void changerEtat() {
-        if (this.etat < 2) { //on verifie que le tournoi n'ait pas déjà démarré le tournoi
-            if (this.etat == 0) { //si les inscriptions sont ouvertes, on les ferme
-                this.etat = 1;
-            } else {            //sinon on les ouvre
-                this.etat = 0;
-            }
-        } else {
-            this.etat = 2;
-            //afficher que le tournoi a déjà démarré et qu'on ne peut pas ouvrir les inscriptions
-        }
-    }
-
-    /**
-     * Méthode qui permet de changer l'état du tournoi pour le démarrer (qu'il soit ouvert ou fermé)
-     */
-    public void demarrerTournoi() {
-        this.etat = 2;
-    }
-
 
     /**
      * Getter permettant de récupérer l'id du tournoi

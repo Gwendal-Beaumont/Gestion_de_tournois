@@ -25,32 +25,6 @@ public class File {
 
     //Méthodes
 
-    /**
-     * Getter permettant d'obtenir l'id du tournoi.
-     *
-     * @return int
-     */
-    public int getId_tournoi() {
-        return this.id_tournoi;
-    }
-
-    /**
-     * Getter permettant d'obtenir la liste des participants
-     *
-     * @return ArrayList
-     */
-    public ArrayList<Equipe> getListe_participants() {
-        return this.liste_participants;
-    }
-
-    /**
-     * Getter permettant de récupérer le tableau des scores
-     *
-     * @return int[][]
-     */
-    public int[][] getTableau_scores() {
-        return this.tableau_scores;
-    }
 
     /**
      * Methode permettant de créer l'ordre de passage des différentes équipes de la file d'équipes.
@@ -66,14 +40,6 @@ public class File {
         this.ordre_passage = ordre_passage;
     }
 
-    /**
-     * Getter permettant de récupérer l'ordre de passage
-     *
-     * @return ArrayList<Match>
-     */
-    public ArrayList<Match> getOrdre_passage() {
-        return this.ordre_passage;
-    }
 
     /**
      * Cette méthode permet de recalculer le classement de la file.
@@ -125,4 +91,41 @@ public class File {
         }
         return vainqueurs;
     }
+
+    //setter & getter
+    /**
+     * Getter permettant d'obtenir l'id du tournoi.
+     *
+     * @return int
+     */
+    public int getId_tournoi() {
+        return this.id_tournoi;
+    }
+
+    /**
+     * Getter permettant d'obtenir la liste des participants
+     *
+     * @return ArrayList
+     */
+    public ArrayList<Equipe> getListe_participants() {
+        return this.liste_participants;
+    }
+
+    /**
+     * Getter permettant de récupérer le tableau des scores
+     *
+     * @return int[][]
+     */
+    public int[][] getTableau_scores() {
+        return this.tableau_scores;
+    }
+    /**
+     * Getter permettant de récupérer l'ordre de passage
+     *
+     * @return ArrayList<Match>
+     */
+    public ArrayList<Match> getOrdre_passage() {
+        return this.ordre_passage;
+    }
+
 }

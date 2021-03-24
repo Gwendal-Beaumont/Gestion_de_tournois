@@ -52,73 +52,6 @@ public class Poule {
         this.ordre_matches = ordre_matches;
     }
 
-    /**
-     * Getter permettant de récupérer l'id du tournoi'
-     *
-     * @return int
-     */
-    public int getId_tournoi() {
-        return this.id_tournoi;
-    }
-
-    /**
-     * Getter permettant de récupérer la position d'une équipe dans la liste des équipes
-     *
-     * @return int
-     */
-    public int getPositionEquipe(Equipe equipe) {
-        for (int position = 0; position < liste_equipes.size(); position++) {
-            if (liste_equipes.get(position).equals(equipe)) {
-                return position;
-            }
-        }
-        return (-1);
-    }
-
-    /**
-     * Getter permettant d'obtenir l'ordre des matches de la poule.
-     *
-     * @return ArrayList<Match>
-     */
-    public ArrayList<Match> getOrdre_matches() {
-        return this.ordre_matches;
-    }
-
-    /**
-     * Getter permettant d'obtenir le nombre de points attribués à l'équipe en cas de victoire
-     *
-     * @return int
-     */
-    public int getPoints_pour_victoire() {
-        return this.points_pour_victoire;
-    }
-
-    /**
-     * Setter permettant de définir le nombre de points à attribuer à l'équipe en cas de victoire
-     *
-     * @param points Nombre de points en cas de victoire
-     */
-    public void setPoints_pour_victoire(int points) {
-        this.points_pour_victoire = points;
-    }
-
-    /**
-     * Getter permettant d'obtenir le nombre de points attribués aux deux équipes en cas de match nul
-     *
-     * @return int
-     */
-    public int getPoints_pour_nul() {
-        return this.points_pour_nul;
-    }
-
-    /**
-     * Setter permettant de définir le nombre de points à attribuer aux deux équipes en cas de match nul
-     *
-     * @param points Nombre de points en cas de mtch nul
-     */
-    public void setPoints_pour_nul(int points) {
-        this.points_pour_nul = points;
-    }
 
     /**
      * Cette méthode permet d'actualiser le tableau de scores de la poule
@@ -170,14 +103,7 @@ public class Poule {
         this.tableau_scores = tableau_scores;
     }
 
-    /**
-     * Getter permettant d'obtenir le tableau des scores de la poule
-     *
-     * @return int[][]
-     */
-    public int[][] getTableau_scores() {
-        return this.tableau_scores;
-    }
+
 
     /**
      * Cette méthode permet de désigner le ou les équipes vainqueures de la poule.
@@ -351,5 +277,83 @@ public class Poule {
                 }
         }
         return classement;
+    }
+
+    //setter & getter
+    /**
+     * Getter permettant de récupérer l'id du tournoi'
+     *
+     * @return int
+     */
+    public int getId_tournoi() {
+        return this.id_tournoi;
+    }
+
+    /**
+     * Getter permettant de récupérer la position d'une équipe dans la liste des équipes
+     *
+     * @return int
+     */
+    public int getPositionEquipe(Equipe equipe) {
+        for (int position = 0; position < liste_equipes.size(); position++) {
+            if (liste_equipes.get(position).equals(equipe)) {
+                return position;
+            }
+        }
+        return (-1);
+    }
+
+    /**
+     * Getter permettant d'obtenir l'ordre des matches de la poule.
+     *
+     * @return ArrayList<Match>
+     */
+    public ArrayList<Match> getOrdre_matches() {
+        return this.ordre_matches;
+    }
+
+    /**
+     * Getter permettant d'obtenir le nombre de points attribués à l'équipe en cas de victoire
+     *
+     * @return int
+     */
+    public int getPoints_pour_victoire() {
+        return this.points_pour_victoire;
+    }
+
+    /**
+     * Setter permettant de définir le nombre de points à attribuer à l'équipe en cas de victoire
+     *
+     * @param points Nombre de points en cas de victoire
+     */
+    public void setPoints_pour_victoire(int points) {
+        this.points_pour_victoire = points;
+    }
+
+    /**
+     * Getter permettant d'obtenir le nombre de points attribués aux deux équipes en cas de match nul
+     *
+     * @return int
+     */
+    public int getPoints_pour_nul() {
+        return this.points_pour_nul;
+    }
+
+    /**
+     * Setter permettant de définir le nombre de points à attribuer aux deux équipes en cas de match nul
+     *
+     * @param points Nombre de points en cas de mtch nul
+     */
+    public void setPoints_pour_nul(int points) {
+        this.points_pour_nul = points;
+    }
+
+    /**
+     * Getter permettant d'obtenir le tableau des scores de la poule
+     *
+     * @return int[][]
+     */
+    public int[][] getTableau_scores() {
+        return this.tableau_scores;
     }
 }

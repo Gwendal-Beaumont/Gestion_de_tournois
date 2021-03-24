@@ -90,7 +90,8 @@ public class LoginServlet extends HttpServlet {
                     ps.close();
                 } catch (SQLException e) {
                 }
-            }
+
+
         }
     }
 
