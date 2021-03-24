@@ -92,6 +92,7 @@ public class ChangeUserDataServlet extends HttpServlet {
             rs = ps2.executeQuery();
             if (rs.next()) {
                 mdpactuel = rs.getString("password");
+                logger.info("Mot de passe récupéré");
                 rs.close();
             }
 
@@ -104,7 +105,7 @@ public class ChangeUserDataServlet extends HttpServlet {
             // On tente d'envoyer les modifications à la base de données
             try {
                 con = AppContextListener.getConnection();
-                ps = con.prepareStatement("UPDATE tst.utilisateur SET username=?,email=?,password=?  WHERE id=?");
+                ps = con.prepareStatement("UPDATE tst.utilisateur SET username=?,email=?,password=? WHERE id=?");
                 ps.setString(1, nom);
                 ps.setString(2, mail);
                 ps.setString(3, motDePasse);

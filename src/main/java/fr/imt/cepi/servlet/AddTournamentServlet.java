@@ -28,57 +28,65 @@ public class AddTournamentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idT = req.getParameter("id-tournoi");
+        int idtournoi = 1;
+        Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
+        int iduser = user.getId();
+
+        // On crée nos attributs pour la base de données
+
+        ResultSet rs;
+
+        int numEquipe = 0;
+
+        //Décompte du nombre d'équipe pour en créer une nouvelle avec le bon id
+        try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM equipe")) {
+            rs = ps.executeQuery();
+            if(rs.next()) {
+                numEquipe=rs.getInt(1)+1;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String id=req.getParameter("id");
-       int idtournoi=Integer.parseInt(id);
-       Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
-       int iduser = user.getId();
-       
-       // On crée nos attributs pour la base de données
-            Connection con;
-            PreparedStatement ps;
-            ResultSet rs;
 
-            
-            try {
-                con = AppContextListener.getConnection();
+        //Insertion de la nouvelle équipe dans le tournoi
+        try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO TABLE tournoi_equipe (id_tournoi, id_equipe) VALUES (?,?)")) {
+            ps.setInt(1, idtournoi);
+            ps.setInt(2, numEquipe);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-                //Décompte du nombre d'équipe pour en créer une nouvelle avec le bon id
-                ps=con.prepareStatement("SELECT COUNT(*) FROM equipe");
-                rs=ps.executeQuery();
-                int numEquipe = 0;
-                while (rs.next()){
-                    numEquipe=1;
-                }
 
-                //Insertion de la nouvelle équipe dans le tournoi
-                ps = con.prepareStatement("INSERT INTO TABLE tournoi_equipe VALUES (?,?)");
-                ps.setInt(1, idtournoi);
-                ps.setInt(2, numEquipe);
-                rs= ps.executeQuery();
-                ps.executeUpdate();
+        //Insertion de l'utilisateur dans l'équipe
 
-                //Insertion de l'utilisateur dans l'équipe
-                ps=con.prepareStatement("INSERT INTO TABLE equipe_utilisateur VALUES (?,?)");
-                ps.setInt(1, numEquipe);
-                ps.setInt(2, iduser);
-                rs= ps.executeQuery();
-                ps.executeUpdate();
+        try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO TABLE equipe_utilisateur (id_equipe,id_joueur) VALUES (?,?)")) {
+            ps.setInt(1, numEquipe);
+            ps.setInt(2, iduser);
+            ps.executeUpdate();
 
-                //Création de l'équipe
-                ps=con.prepareStatement("INSERT INTO TABLE equipe VALUES (?,?)");
-                ps.setInt(1, numEquipe);
-                ps.setString(2, "");
-                rs= ps.executeQuery();
-                ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-                getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+        //Création de l'équipe
+        try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
+                "INSERT INTO TABLE equipe (nom) VALUES (?)")) {
+            ps.setString(1, "");
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);
     }
 }
+

@@ -17,7 +17,7 @@
 
     <form action="AddTournament" method="post">
         <h4> saisissez le code </h4>
-        <input id="nid-tournoi" type="text" class="form-control"
+        <input id="id-tournoi" type="text" class="form-control"
                placeholder="" value="" required/>
         <input type="submit" class="btnSubmit" value="Rejoindre"/>
     </form>
