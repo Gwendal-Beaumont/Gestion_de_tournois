@@ -38,6 +38,15 @@ public class RejoindreTournoi {
         // On tente de rejoindre le tournoi en ajoutant l'utilisateur à la base de données et en créant l'équipe
         // nécessaire pour pouvoir ajouter le tout dans les tables de la base de données.
 
+        //Création de l'équipe
+        try {
+            ps = con.prepareStatement("INSERT INTO equipe (nom) VALUES (?)");
+            ps.setString(1, "Unnamed");
+            ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         int numEquipe = 0;
 
         //Décompte du nombre d'équipe pour en créer une nouvelle avec le bon id
@@ -45,7 +54,7 @@ public class RejoindreTournoi {
             ps = con.prepareStatement("SELECT COUNT(*) FROM tst.equipe");
             rs = ps.executeQuery();
             if (rs.next()) {
-                numEquipe = rs.getInt(1) + 1;
+                numEquipe = rs.getInt(1);
                 rs.close();
             }
         } catch (SQLException throwables) {
@@ -65,7 +74,6 @@ public class RejoindreTournoi {
 
 
         //Insertion de l'utilisateur dans l'équipe
-
         try {
             ps = con.prepareStatement("INSERT INTO equipe_utilisateur (id_equipe, id_joueur) VALUES (?,?)");
             ps.setInt(1, numEquipe);
@@ -76,14 +84,6 @@ public class RejoindreTournoi {
             e.printStackTrace();
         }
 
-        //Création de l'équipe
-        try {
-            ps = con.prepareStatement("INSERT INTO TABLE equipe (nom) VALUES (?)");
-            ps.setString(1, "Unnamed");
-            ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 
