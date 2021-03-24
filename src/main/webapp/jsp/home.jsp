@@ -24,13 +24,24 @@
 
 </div> -->
 
-<div>
+<div class = 'accueil'>
     <h1>Accueil</h1>
     <h4>Les tournois publics en cours</h4>
-
-    <p>Trophée Orlandini</p>
-    <p>Challenge Centrale Lyon</p>
-    <p>Cartel</p>
+    <div class = 'wrap'>
+        <div class = 'content'>
+            <p>Trophée Orlandini</p>
+        </div>
+    </div>
+    <div class = 'wrap'>
+        <div class = 'content'>
+            <p>Challenge Centrale Lyon</p>
+        </div>
+    </div>
+    <div class = 'wrap'>
+        <div class = 'content'>
+            <p>Cartel</p>
+        </div>
+    </div>
 </div>
 
 <%@ include file="template/footer.jsp" %>

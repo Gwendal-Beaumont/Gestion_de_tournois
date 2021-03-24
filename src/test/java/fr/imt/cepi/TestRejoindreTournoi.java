@@ -14,7 +14,7 @@ public class TestRejoindreTournoi {
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/tst?useLegacyDatetimeCode=false&serverTimezone=Europe/Paris","tst","tst");
         RejoindreTournoi testrejoindre = new RejoindreTournoi(1, 1);
-        testrejoindre.join(con);
+        // testrejoindre.join(con);
         con.close();
     }
 }

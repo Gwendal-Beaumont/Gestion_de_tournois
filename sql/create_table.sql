@@ -87,7 +87,7 @@ CREATE TABLE tst.administrateur
 );
 
 -- Création de la table d'association utilisateur/équipe
-CREATE TABLE tst.equipe_joueur
+CREATE TABLE tst.equipe_utilisateur
 (
     id_equipe int NOT NULL,
     id_joueur int NOT NULL,
