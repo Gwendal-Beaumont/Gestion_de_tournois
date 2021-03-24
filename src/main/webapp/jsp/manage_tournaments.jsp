@@ -44,6 +44,7 @@
 
     </table>
 </div>
+<p>ID du tournoi : ${id_tournament}</p>
 <%@ include file="template/footer.jsp" %>
 </body>
 </html>

@@ -19,10 +19,10 @@ public class Tournoi implements Serializable {
     private Boolean visibility;
     private LocalDateTime date;
     private int proprietaire;
-    private int etat; //0 inscriptions ouvertes / 1 inscriptions fermees / 2 tournoi démarré
+    private int etat; //0 inscriptions ouvertes / 1 inscriptions fermees / 2 tournoi en cours / 3 Tournoi terminé
 
     // Constructeur
-    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire) {
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
         this.id = id;
         this.nom_tournoi = nom_tournoi;
         this.liste_equipes = liste_equipes;
@@ -174,4 +174,9 @@ public class Tournoi implements Serializable {
         return visibility;
     }
 
+    public String getStringDate() {
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        String formattedDate = date.format(dateFormat);
+        return formattedDate;
+    }
 }

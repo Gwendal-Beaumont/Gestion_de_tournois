@@ -74,21 +74,23 @@ public class CreateTournamentServlet extends HttpServlet {
         Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
 
         // Conversion format date
-        DateFormat date2=new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        DateFormat date2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 
-        java.util.Date date3= null;
+        java.util.Date date3 = null;
         try {
             date3 = date2.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        java.sql.Timestamp date4=new Timestamp(date3.getTime());
-
+        java.sql.Timestamp date4 = new Timestamp(date3.getTime());
 
 
         // On crée nos attributs pour la base de données
         Connection con;
         PreparedStatement ps;
+
+        // ID du tournoi créé
+        int id_tournoi = 0;
 
         // On tente d'envoyer le tournoi à la base de données
         try {
@@ -96,15 +98,24 @@ public class CreateTournamentServlet extends HttpServlet {
             ps = con.prepareStatement("INSERT INTO tst.tournoi(nom, id_sport, visibility, date_debut, proprietaire) VALUES (?, ?, ?, ?, ?)");
             ps.setString(1, nom);
             ps.setInt(2, Integer.parseInt(sport));
-            ps.setBoolean(3, visibility.equals("public"));
+            ps.setBoolean(3, visibility.equals("public")); // True = public
             ps.setTimestamp(4, date4);
             ps.setInt(5, user.getId());
             ps.executeUpdate();
-            getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp?id_tournament=007").forward(req, resp);
+            try (Connection con2 = AppContextListener.getConnection();
+                 PreparedStatement ps2 = con.prepareStatement(
+                         "SELECT id FROM tst.tournoi WHERE proprietaire=? ORDER BY id DESC LIMIT 1")) {
+                ps2.setInt(1, user.getId());
+                ResultSet rs2 = ps2.executeQuery();
+                if (rs2.next()) {
+                    id_tournoi = rs2.getInt("id");
+                    logger.info("Le dernier tournoi de " + user.getUsername() + " (" + user.getId() + ") " + "a été trouvé et a pour id : " + id_tournoi);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
             getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
         }
-
+        resp.sendRedirect("ManageTournaments?id_tournament=" + id_tournoi);
     }
 }

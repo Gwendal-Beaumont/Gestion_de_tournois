@@ -31,10 +31,10 @@ public class HomeServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 
-        // On cherche les sports associés à l'utilisateur dans la base de données
+        // On cherche les tournois associés à l'utilisateur dans la base de données
         try (Connection con = AppContextListener.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                     "SELECT id, nom, id_sport, visibility, date_debut, proprietaire FROM tst.tournoi WHERE proprietaire=?")) {
+                     "SELECT id, nom, id_sport, visibility, date_debut, proprietaire, etat FROM tst.tournoi WHERE proprietaire=?")) {
             ps.setInt(1, utilisateur.getId());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -50,7 +50,8 @@ public class HomeServlet extends HttpServlet {
                             rs.getInt("id_sport"),
                             rs.getBoolean("visibility"),
                             rs.getTimestamp("date_debut").toLocalDateTime(),
-                            rs.getInt("proprietaire")));
+                            rs.getInt("proprietaire"),
+                            rs.getInt("etat")));
                 }
                 System.out.println(listeTournoi);
                 request.setAttribute("listeTournois", listeTournoi);
