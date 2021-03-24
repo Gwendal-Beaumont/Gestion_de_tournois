@@ -13,7 +13,7 @@
                     <li><a href="<c:url value="/Home"/>">Accueil</a></li>
                 </c:otherwise>
             </c:choose>
-            <li><a href="<c:url value="/ManageTournaments"/>">Mes tournois</a></li>
+            <li><a href="<c:url value="/ManageTournaments"/>">Tournois</a></li>
             <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
         </ul>
     </nav>
@@ -29,11 +29,21 @@
         </c:when>
         <c:otherwise>
 
-    <div class="login_register_navbar">
+            <div class="login_register_navbar">
 
                 <div class="dropdown">
                     <button class="dropbtn">
-                    <div class="btnSubmit"> Moi </div>
+                        <div class="btnSubmit"> Tournoi &blacktriangledown;</div>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="<c:url value="/create_tournament"/>">Créer</a>
+                        <a href="<c:url value="/AddTournament"/>">Rejoindre</a>
+                    </div>
+                </div>
+
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <div class="btnSubmit"> Mon compte &blacktriangledown;</div>
                     </button>
                     <div class="dropdown-content">
                         <a href="<c:url value="/Profil"/>">Profil</a>
@@ -41,16 +51,8 @@
                     </div>
                 </div>
 
-            <div class="dropdown">
-                <button class="dropbtn">
-                    <div class="btnSubmit">Nouveau tournoi </div>
-                </button>
-                <div class="dropdown-content">
-                    <a href="<c:url value="/create_tournament"/>">Créer</a>
-                    <a href="<c:url value="/AddTournament"/>">Rejoindre</a>
-                </div>
-             </div>
-    </div>
+            </div>
+
 
         </c:otherwise>
     </c:choose>

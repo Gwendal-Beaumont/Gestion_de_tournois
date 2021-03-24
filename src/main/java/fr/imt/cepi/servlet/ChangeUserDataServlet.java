@@ -1,6 +1,6 @@
 package fr.imt.cepi.servlet;
 
-import fr.imt.cepi.bean.Sport;
+import fr.imt.cepi.bean.Tournoi;
 import fr.imt.cepi.bean.Utilisateur;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
 import org.apache.logging.log4j.LogManager;
@@ -11,11 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @WebServlet("/Profil")
@@ -24,7 +22,42 @@ public class ChangeUserDataServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/jsp/profil.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+        Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+
+        // On cherche les tournois associés à l'utilisateur dans la base de données
+        try (Connection con = AppContextListener.getConnection();
+             PreparedStatement ps = con.prepareStatement(
+                     "SELECT id, nom, id_sport, visibility, date_debut, proprietaire, etat FROM tst.tournoi WHERE proprietaire=?")) {
+            ps.setInt(1, utilisateur.getId());
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                // On indique dans le log un accès réussi aux données
+                logger.info("Fetched all tournaments data");
+                ArrayList<Tournoi> listeTournoi = new ArrayList<>();
+                rs.beforeFirst();
+                while (rs.next()) {
+                    if (rs.getInt("etat") == 3) {
+                        listeTournoi.add(new Tournoi(
+                                rs.getInt("id"),
+                                rs.getString("nom"),
+                                new ArrayList<>(),
+                                rs.getInt("id_sport"),
+                                rs.getBoolean("visibility"),
+                                rs.getTimestamp("date_debut").toLocalDateTime(),
+                                rs.getInt("proprietaire"),
+                                rs.getInt("etat")));
+                    }
+                }
+                System.out.println("Liste des tournois trouvés :");
+                System.out.println(listeTournoi);
+                request.setAttribute("listeTournois", listeTournoi);
+            }
+            rs.close();
+            getServletContext().getRequestDispatcher("/jsp/profil.jsp").forward(request, response);
+        } catch (SQLException throwables) {
+            getServletContext().getRequestDispatcher("/jsp/profil.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -50,7 +83,7 @@ public class ChangeUserDataServlet extends HttpServlet {
         Connection con2;
         PreparedStatement ps2;
         ResultSet rs;
-        
+
 
         try {
             con2 = AppContextListener.getConnection();

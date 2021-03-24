@@ -13,7 +13,8 @@
     <c:redirect url="/">Redirect</c:redirect>
 </c:if>
 
-<div class="jumbotron">
+<!-- L'historique des tournois d'un joueur devra apparaître dans la page Mes Tournois puis dans le Profil-->
+<!-- <div class="jumbotron">
     <h1 class="display-4">Bonjour ${utilisateur.getUsername()},</h1>
     <br>
     <p>Historique des tournois pour ${utilisateur.getUsername()} en cours :</p>
@@ -21,6 +22,15 @@
         <p>a<br></p>
     </c:forEach>
 
+</div> -->
+
+<div>
+    <h1>Accueil</h1>
+    <h4>Les tournois publics en cours</h4>
+
+    <p>Trophée Orlandini</p>
+    <p>Challenge Centrale Lyon</p>
+    <p>Cartel</p>
 </div>
 
 <%@ include file="template/footer.jsp" %>

@@ -77,6 +77,12 @@ header {
 .jumbotron a {
     color: #d32f2f;
 }
+/* Prévisualisation d'un tournoi */
+
+p{
+    border: 2px solid rebeccapurple;
+    padding: .5em;
+}
 
 /* Affichage tableau */
 
@@ -207,4 +213,22 @@ hr {
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.history-tournaments {
+    padding-top: 20px;
+}
+.history-tournaments-list {
+    padding: 20px 0 20px 20px;
+}
+
+.history-tournaments-list h3 {
+    padding-top: 15px;
+}
+.history-tournaments-list ul {
+    padding-left: 20px;
+}
+.history-tournaments-list li {
+    color: #0a0a0a;
+    list-style: none;
 }

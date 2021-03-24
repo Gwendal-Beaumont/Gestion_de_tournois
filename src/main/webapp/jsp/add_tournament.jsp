@@ -8,27 +8,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>add_tournament</title>
+    <title>Rejoindre un tournoi </title>
     <%@ include file="template/head_import.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
     <%@include file="template/navbar.jsp"%>
-    <h1> sélectionner votre équipe </h1>
-    <form action="joinTeam" method="post">
 
-        <select name="team" id="team" required>
-
-            <option value="Sélectionner une équipe" disabled selected hidden>Sélectionner une équipe</option>
-            <c:forEach items="${sports}" var="sport">
-                <option value="${sport.getId()}">${sport.getNom()}</option>
-            </c:forEach>
-
-        </select>
-
-
-
-
+    <form action="AddTournament" method="post">
+        <h4> saisissez le code </h4>
+        <input id="nid-tournoi" type="text" class="form-control"
+               placeholder="" value="" required/>
+        <input type="submit" class="btnSubmit" value="Rejoindre"/>
     </form>
 
 

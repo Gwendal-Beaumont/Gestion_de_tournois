@@ -54,6 +54,7 @@ public class Poule {
 
     /**
      * Getter permettant de récupérer l'id du tournoi'
+     *
      * @return int
      */
     public int getId_tournoi() {
@@ -179,7 +180,7 @@ public class Poule {
     }
 
     /**
-     * Cette fonction permet de désigner le ou les équipes vainqueures de la poule.
+     * Cette méthode permet de désigner le ou les équipes vainqueures de la poule.
      *
      * @param nbr_vainqueurs Nombre de vainqueurs souhaités dans la poule
      * @return ArrayList<Equipe>
@@ -190,13 +191,13 @@ public class Poule {
         int[][] tab = getTableau_scores();
         ArrayList<Integer> positions_a_trier = new ArrayList<>();
         ArrayList<Equipe> classement_final = new ArrayList<>();
-        for(int i=0; i<nbr_equipes; i++) {
+        for (int i = 0; i < nbr_equipes; i++) {
             positions_a_trier.add(i);
         }
         ArrayList<Integer> classement_int = departager(positions_a_trier, "points");
-        for(int i=0; i<nbr_vainqueurs; i++) {
-            for(int j=0; j<nbr_equipes; j++) {
-                if(tab[i][0] == liste_equipes.get(j).getId_equipe()) {
+        for (int i = 0; i < nbr_vainqueurs; i++) {
+            for (int j = 0; j < nbr_equipes; j++) {
+                if (tab[i][0] == liste_equipes.get(j).getId_equipe()) {
                     classement_final.add(liste_equipes.get(j));
                 }
             }
@@ -335,7 +336,6 @@ public class Poule {
                     }
                 }
 
-
             case "id":
                 while (classement.size() < nbr_a_trier) {
 
@@ -348,7 +348,6 @@ public class Poule {
                         }
                     }
                     classement.add(0, pos);
-
                 }
         }
         return classement;

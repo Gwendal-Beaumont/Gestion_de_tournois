@@ -46,6 +46,7 @@ CREATE TABLE tst.tournoi
     visibility   boolean     NOT NULL,
     date_debut   DATETIME    NOT NULL,
     proprietaire int         NOT NULL,
+    etat         int         NOT NULL DEFAULT 1,
     CONSTRAINT pkTournoi PRIMARY KEY (id),
     CONSTRAINT fkSportTournoi FOREIGN KEY (id_sport) REFERENCES sport (id),
     CONSTRAINT fkTournoiProprietaire FOREIGN KEY (proprietaire) REFERENCES utilisateur (id)
