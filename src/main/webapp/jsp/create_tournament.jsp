@@ -12,51 +12,42 @@
 <%@include file="template/navbar.jsp" %>
 
 <div class="crt-tournament-box">
-    <h1> Créer mon tournoi ! </h1>
-    <form action="CreateTournament" method="post">
-        <h4>Choisir le nom du tournoi :</h4>
-        <input name="nom-tournoi" type="text" class="form-control"
-               placeholder="Nom du tournoi" value="" required/>
+    <div class="input-fields">
+        <h1> Créer mon tournoi ! </h1>
+        <form action="CreateTournament" method="post">
+            <h4>Choisir le nom du tournoi :</h4>
+            <input name="nom-tournoi" type="text" class="form-control"
+                   placeholder="Nom du tournoi" value="" required/>
 
-        <h4>Choisir le sport :</h4>
-        <select name="sport" id="sport" required>
-            <option value="Sélectionner un sport" disabled selected hidden> Sélectionner un sport </option>
-            <c:forEach items="${sport}" var="sport">
-                <option value="${sport.getId()}">${sport.getNom()}</option>
-            </c:forEach>
+            <h4>Choisir le sport :</h4>
+            <select name="sport" id="sport" required>
+                <option value="Sélectionner un sport" disabled selected hidden> Sélectionner un sport</option>
+                <c:forEach items="${sports}" var="sports">
+                    <option value="${sports.getId()}">${sports.getNom()}</option>
+                </c:forEach>
 
-        </select>
+            </select>
 
-        <h4>Date de début du tournoi :</h4>
-        <input name="date-debut" type="datetime-local" value="2021-02-18T20:44" required/>
-        <p>Problème d'affichage ? Si vous êtes sous Internet Explorer, Firefox ou Safari, essayez avec un autre
-            navigateur.<br></p>
+            <h4>Date de début du tournoi :</h4>
+            <input name="date-debut" type="datetime-local" value="2021-02-18T20:44" required/>
+            <p>Problème d'affichage ? Si vous êtes sous Internet Explorer, Firefox ou Safari, essayez avec un autre
+                navigateur.<br></p>
 
 
-        <div class="selection-visibility">
-            <h4>Visibilité du tournoi : (public par défaut)</h4>
-            <input name="visibility" type="radio" id="public" value="public" required/>
-            <label for="public">Public</label>
-            <input name="visibility" type="radio" id="prive" value="prive" required/>
-            <label for="prive">Privé</label>
-        </div>
+            <div class="selection-visibility">
+                <h4>Visibilité du tournoi : (public par défaut)</h4>
+                <input name="visibility" type="radio" id="public" value="public" required/>
+                <label for="public">Public</label>
+                <input name="visibility" type="radio" id="prive" value="prive" required/>
+                <label for="prive">Privé</label>
+            </div>
 
-        <input type="submit" class="btnSubmit" value="Créer mon tournoi"
-               <c:if test="${utilisateur.getUsername() == null}">disabled</c:if>/>
+            <input type="submit" class="btnSubmit" value="Créer mon tournoi"
+                   <c:if test="${utilisateur.getUsername() == null}">disabled</c:if>/>
 
-    </form>
+        </form>
+    </div>
 </div>
-
-<br><br><br><br><br><br>
-<hr>
-<h3>Zone de test</h3>
-<hr>
-
-<c:choose>
-    <c:when test="${utilisateur.getUsername() == null}"><p>Aucun utilisateur connecté
-        ! ${utilisateur.getUsername()}</p></c:when>
-    <c:otherwise><p>L'utilisateur connecté est ${utilisateur.getUsername()}.</p></c:otherwise>
-</c:choose>
 
 <%@ include file="template/footer.jsp" %>
 </body>

@@ -13,16 +13,18 @@
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
-    <%@include file="template/navbar.jsp"%>
+<%@include file="template/navbar.jsp" %>
 
+<div class="input-fields">
     <form action="AddTournament" method="post">
-        <h4> saisissez le code </h4>
+        <h1> Saisissez le code du tournoi que vous souhaitez rejoindre </h1>
         <input name="id-tournoi" id="id-tournoi" type="number" class="form-control"
-               placeholder="Numéro du tournoi à rejoindre" value="" required/>
+               placeholder="N° du tournoi" value="" required/> </form>
+    <br>
         <input type="submit" class="btnSubmit" value="Rejoindre"/>
     </form>
+</div>
 
-
-    <%@ include file="template/footer.jsp" %>
+<%@ include file="template/footer.jsp" %>
 </body>
 </html>

@@ -17,29 +17,31 @@
 <h1> Mon profil</h1>
 
 <div class="crt-tournament-box">
-    <form action="Profil" method="post">
+    <div class="input-fields">
+        <form action="Profil" method="post">
+            <h3>Nom</h3>
+            <input name="username" type="text" class="form-control"
+                   placeholder="Username" value="${utilisateur.getUsername()}"/>
 
-        <h4>Nom</h4>
-        <input name="username" type="text" class="form-control"
-               placeholder="Username" value="${utilisateur.getUsername()}"/>
+            <h3>Adresse mail </h3>
+            <input name="email" type="email" class="form-control"
+                   placeholder="Email" value="${utilisateur.getEmail()}"/>
 
-        <h4>Adresse mail </h4>
-        <input name="email" type="email" class="form-control"
-               placeholder="Email" value="${utilisateur.getEmail()}"/>
+            <h3>Mot de passe</h3>
+            <input name="password" type="password" class="form-control"
+                   placeholder="Mot de passe" value=""/>
 
-        <h4>Mot de passe</h4>
-        <input name="password" type="password" class="form-control"
-               placeholder="Mot de passe" value=""/>
+            <h5>Saissez votre mot de passe actuel pour valider les changements</h5>
+            <input name="checkpassword" type="password" class="form-control"
+                   placeholder="Mot de passe" value="" required/>
 
-        <h6>Saissez votre mot de passe actuel pour valider les changements</h6>
-        <input name="checkpassword" type="password" class="form-control"
-               placeholder="Mot de passe" value="" required/>
+            <br/>
+            <br/>
+            <br/>
+            <input type="submit" class="btnSubmit" value="Modifier"/>
 
-        <br/>
-        <input type="submit" class="btnSubmit" value="Modifier"/>
-
-
-    </form>
+        </form>
+    </div>
 </div>
 
 <div class="history-tournaments">
