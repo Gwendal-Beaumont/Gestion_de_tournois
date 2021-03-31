@@ -100,12 +100,17 @@ public class Tournoi implements Serializable {
      * @return String etat tournoi
      */
     public String getEtat() {
-        if (this.etat == 0) {
-            return "inscriptions en cours";
-        } else if (this.etat == 1) {
-            return "inscriptions fermées";
-        } else {
-            return "tournoi en cours";
+        switch (etat) {
+            case 0:
+                return "Inscriptions en cours";
+            case 1:
+                return "Inscriptions fermées";
+            case 2:
+                return "Tournoi en cours";
+            case 3:
+                return "Tournoi terminé";
+            default:
+                return "Etat invalide";
         }
     }
 
