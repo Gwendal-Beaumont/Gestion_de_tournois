@@ -15,10 +15,13 @@
 <body>
 <%@include file="template/navbar.jsp" %>
 <div class="paramtournoi">
-    <h1>nom_du_tournoi</h1>
-    <h4>sport</h4>
-    <h4>date_du_tournoi</h4>
-    <h4>etat_du_tournoi</h4>
+
+<c:forEach items="${listeTournois}" var="tournoi">
+
+    <h1>nom_du_tournoi : ${tournoi.getNom_tournoi()}</h1>
+    <h4>sport : ${tournoi.getSport().getNom()}</h4>
+    <h4>date_du_tournoi : ${tournoi.getStringDate()}</h4>
+    <h4>etat_du_tournoi : ${tournoi.getEtat()}</h4>
     <h4>Equipes</h4>
 
     <table>
@@ -43,6 +46,8 @@
         </tr>
 
     </table>
+</c:forEach>
+
 </div>
 <p>ID du tournoi : ${id_tournament}</p>
 <%@ include file="template/footer.jsp" %>

@@ -44,24 +44,10 @@
     </div>
 </div>
 
-<div class="history-tournaments">
-    <h1> Mes tournois passés :</h1>
+<div class="accueil">
+    <h1> Mes tournois passés</h1>
 
-    <div class="history-tournaments-list">
-        <c:forEach items="${listeTournois}" var="tournoi">
-            <h3>Tournoi ${tournoi.getNom_tournoi()} (id : #${tournoi.getId()})</h3>
-            <ul>
-                <li>Sport pratiqué : ${tournoi.getId_sport()}</li>
-                <li>Visibilité :
-                    <c:choose>
-                        <c:when test="${tournoi.getVisibility() == true}">Public</c:when>
-                        <c:when test="${tournoi.getVisibility() == false}">Privé</c:when>
-                    </c:choose>
-                </li>
-                <li>Date de début : ${tournoi.getStringDate()}</li>
-            </ul>
-        </c:forEach>
-    </div>
+<%@include file="template/display_tournament.jsp"%>
 </div>
 
 <%@ include file="template/footer.jsp" %>

@@ -29,7 +29,7 @@ public class ChangeUserDataServlet extends HttpServlet {
         // On cherche les tournois associés à l'utilisateur dans la base de données
         try (Connection con = AppContextListener.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                     "SELECT id, nom, id_sport, visibility, date_debut, proprietaire, etat FROM tst.tournoi WHERE proprietaire=?")) {
+                     "SELECT tournoi.id, tournoi.nom, id_sport, sport.nom, sport.image, visibility, date_debut, proprietaire, etat FROM tst.tournoi JOIN tst.sport ON sport.id = id_sport  WHERE proprietaire=?;")) {
             ps.setInt(1, utilisateur.getId());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -43,7 +43,7 @@ public class ChangeUserDataServlet extends HttpServlet {
                                 rs.getInt("id"),
                                 rs.getString("nom"),
                                 new ArrayList<>(),
-                                new Sport(rs.getInt("id_sport"), rs.getString("nom"), rs.getString("url")),
+                                new Sport(rs.getInt("id_sport"), rs.getString("sport.nom"), rs.getString("sport.image")),
                                 rs.getBoolean("visibility"),
                                 rs.getTimestamp("date_debut").toLocalDateTime(),
                                 rs.getInt("proprietaire"),
