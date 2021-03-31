@@ -14,7 +14,7 @@
 <div class="crt-tournament-box">
     <div class="input-fields">
         <h1> Créer mon tournoi ! </h1>
-        <form action="CreateTournament" method="post">
+        <form action="create_tournament" method="post">
             <h4>Choisir le nom du tournoi :</h4>
             <input name="nom-tournoi" type="text" class="form-control"
                    placeholder="Nom du tournoi" value="" required/>
@@ -22,8 +22,8 @@
             <h4>Choisir le sport :</h4>
             <select name="sport" id="sport" required>
                 <option value="Sélectionner un sport" disabled selected hidden> Sélectionner un sport</option>
-                <c:forEach items="${sports}" var="sports">
-                    <option value="${sports.getId()}">${sports.getNom()}</option>
+                <c:forEach items="${sport}" var="sport">
+                    <option value="${sport.getId()}">${sport.getNom()}</option>
                 </c:forEach>
 
             </select>
