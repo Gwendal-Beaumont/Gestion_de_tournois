@@ -107,6 +107,7 @@ header {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .wrap:hover {
@@ -183,6 +184,7 @@ hr {
     width: 75%;
     position: center;
 }
+
 #about-section h1 {
     margin-left: 50px;
 }
@@ -252,25 +254,9 @@ hr {
     display: block;
 }
 
-.history-tournaments {
-    padding-top: 20px;
-}
-
-.history-tournaments-list {
-    padding: 20px 0 20px 20px;
-}
-
-.history-tournaments-list h3 {
-    padding-top: 15px;
-}
-
-.history-tournaments-list ul {
-    padding-left: 20px;
-}
-
-.history-tournaments-list li {
-    color: #0a0a0a;
-    list-style: none;
+h1 {
+    text-align: center;
+    padding: 10px 0 20px 0;
 }
 
 .input-fields input[type=text], .input-fields input[type=number], .input-fields input[type=datetime-local], .input-fields input[type=password], .input-fields input[type=email] {
