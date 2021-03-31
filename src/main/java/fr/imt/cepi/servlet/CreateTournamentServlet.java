@@ -35,7 +35,7 @@ public class CreateTournamentServlet extends HttpServlet {
             // Annonce dans le logger de la tentative de récupération des données
             logger.info("Fetching all sports data");
             con = AppContextListener.getConnection();
-            ps = con.prepareStatement("SELECT id, nom from sport ORDER BY nom");
+            ps = con.prepareStatement("SELECT id, nom from tst.sport ORDER BY nom");
             rs = ps.executeQuery();
 
             // Test de la validité de nos données (on regarde si notre résultat n'est pas vide
@@ -46,7 +46,7 @@ public class CreateTournamentServlet extends HttpServlet {
                 ArrayList<Sport> listeDesSports = new ArrayList<>();
                 rs.beforeFirst();
                 while (rs.next()) {
-                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom"), rs.getString("url")));
+                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom")));
                 }
                 req.setAttribute("sport", listeDesSports);
             }

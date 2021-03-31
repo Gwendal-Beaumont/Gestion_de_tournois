@@ -23,7 +23,12 @@ public class ManageTournamentsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id_tournament = req.getParameter("id_tournament");
         System.out.println(id_tournament);
-        int id = Integer.parseInt(id_tournament);
+        int id;
+        try {
+            id = Integer.parseInt(id_tournament);
+        } catch (NumberFormatException e) {
+            id = 0;
+        }
         try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
                 "SELECT tournoi.id, tournoi.nom, id_sport, sport.nom, sport.image, visibility, date_debut, proprietaire, etat FROM tst.tournoi JOIN tst.sport ON sport.id = id_sport  WHERE tournoi.id = ?;"
         ) ){
