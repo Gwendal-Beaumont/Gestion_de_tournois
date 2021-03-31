@@ -15,19 +15,19 @@ public class Tournoi implements Serializable {
     private String nom_tournoi;
     private ArrayList<Equipe> liste_equipes;
     private ArrayList<Match> ordre_matches;
-    private int id_sport;
+    private Sport sport;
     private Boolean visibility;
     private LocalDateTime date;
     private int proprietaire;
     private int etat; //0 inscriptions ouvertes / 1 inscriptions fermees / 2 tournoi en cours / 3 Tournoi terminé
 
     // Constructeur
-    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int id_sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, Sport sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
         this.id = id;
         this.nom_tournoi = nom_tournoi;
         this.liste_equipes = liste_equipes;
         this.ordre_matches = new ArrayList<>();
-        this.id_sport = id_sport;
+        this.sport = sport;
         this.visibility = visibility;
         this.date = date;
         this.proprietaire = proprietaire;
@@ -89,8 +89,8 @@ public class Tournoi implements Serializable {
      *
      * @return int id du sport
      */
-    public int getId_sport() {
-        return id_sport;
+    public Sport getSport() {
+        return sport;
     }
 
 
@@ -116,7 +116,7 @@ public class Tournoi implements Serializable {
                 ", nom_tournoi='" + nom_tournoi + '\'' +
                 ", liste_equipes=" + liste_equipes +
                 ", ordre_matches=" + ordre_matches +
-                ", id_sport=" + id_sport +
+                ", sport=" + sport +
                 ", visibility=" + visibility +
                 ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
                 ", proprietaire=" + proprietaire +

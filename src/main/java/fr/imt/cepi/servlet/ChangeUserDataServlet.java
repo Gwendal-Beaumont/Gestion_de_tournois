@@ -1,5 +1,6 @@
 package fr.imt.cepi.servlet;
 
+import fr.imt.cepi.bean.Sport;
 import fr.imt.cepi.bean.Tournoi;
 import fr.imt.cepi.bean.Utilisateur;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
@@ -42,7 +43,7 @@ public class ChangeUserDataServlet extends HttpServlet {
                                 rs.getInt("id"),
                                 rs.getString("nom"),
                                 new ArrayList<>(),
-                                rs.getInt("id_sport"),
+                                new Sport(rs.getInt("id_sport"), rs.getString("nom"), rs.getString("url")),
                                 rs.getBoolean("visibility"),
                                 rs.getTimestamp("date_debut").toLocalDateTime(),
                                 rs.getInt("proprietaire"),

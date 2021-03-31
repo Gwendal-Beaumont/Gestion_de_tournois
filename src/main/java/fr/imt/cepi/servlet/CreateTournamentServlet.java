@@ -46,7 +46,7 @@ public class CreateTournamentServlet extends HttpServlet {
                 ArrayList<Sport> listeDesSports = new ArrayList<>();
                 rs.beforeFirst();
                 while (rs.next()) {
-                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom")));
+                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom"), rs.getString("url")));
                 }
                 req.setAttribute("sports", listeDesSports);
             }
