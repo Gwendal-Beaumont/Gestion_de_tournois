@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @WebServlet({"/Home"})
 public class HomeServlet extends HttpServlet {
@@ -34,13 +35,14 @@ public class HomeServlet extends HttpServlet {
         // On cherche les tournois associés à l'utilisateur dans la base de données
         try (Connection con = AppContextListener.getConnection();
              PreparedStatement ps = con.prepareStatement(
-                     "SELECT id, nom, id_sport, visibility, date_debut, proprietaire, etat FROM tst.tournoi WHERE proprietaire=?")) {
+                     "SELECT tournoi.id, tournoi.nom, id_sport, sport.nom, sport.image, visibility, date_debut, proprietaire, etat FROM tst.tournoi JOIN tst.sport ON sport.id = id_sport  WHERE proprietaire=?;")) {
             ps.setInt(1, utilisateur.getId());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 // On indique dans le log un accès réussi aux données
                 logger.info("Fetched all tournaments data");
                 ArrayList<Tournoi> listeTournoi = new ArrayList<>();
+                HashMap<String, String> lienSportImage = new HashMap<>();
                 rs.beforeFirst();
                 while (rs.next()) {
                     listeTournoi.add(new Tournoi(
@@ -52,9 +54,12 @@ public class HomeServlet extends HttpServlet {
                             rs.getTimestamp("date_debut").toLocalDateTime(),
                             rs.getInt("proprietaire"),
                             rs.getInt("etat")));
+                    lienSportImage.put(rs.getString("sport.nom"), rs.getString("sport.image"));
                 }
                 System.out.println(listeTournoi);
+                System.out.println(lienSportImage);
                 request.setAttribute("listeTournois", listeTournoi);
+                request.setAttribute("lienSportImage", lienSportImage);
             }
             rs.close();
             getServletContext().getRequestDispatcher("/jsp/home.jsp").forward(request, response);

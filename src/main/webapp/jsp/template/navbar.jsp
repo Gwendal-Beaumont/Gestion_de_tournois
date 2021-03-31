@@ -1,8 +1,18 @@
 <%@ page pageEncoding="UTF-8" %>
 <header>
-    <a href="<c:url value="/"/>"><img class="logo"
-                                      src="<c:url value="/images/logo_white_48pt.svg"/>"
-                                      alt="logo"></a>
+    <c:choose>
+        <c:when test="${utilisateur.getUsername() == null}">
+            <a href="<c:url value="/"/>"><img class="logo"
+                                              src="<c:url value="/images/logo_white_48pt.svg"/>"
+                                              alt="logo"></a>
+        </c:when>
+        <c:otherwise>
+            <a href="<c:url value="/Home"/>"><img class="logo"
+                                              src="<c:url value="/images/logo_white_48pt.svg"/>"
+                                              alt="logo"></a>
+        </c:otherwise>
+    </c:choose>
+
     <nav>
         <ul class="nav__links">
             <c:choose>

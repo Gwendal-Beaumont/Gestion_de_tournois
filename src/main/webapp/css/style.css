@@ -77,14 +77,16 @@ header {
 .jumbotron a {
     color: #d32f2f;
 }
+
 /* Prévisualisation d'un tournoi */
 
-.accueil p{
+.accueil p {
     border: 2px solid rebeccapurple;
     padding: 6em;
     text-align: center;
     font-size: 20px;
 }
+
 .wrap {
     position: relative;
 }
@@ -98,14 +100,16 @@ header {
     width: 100%;
     height: 100%;
     opacity: 0.6;
-    background-image: url('https://images.unsplash.com/photo-1519046947096-f43d6481532b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80');
+    /*background-image: url('https://images.unsplash.com/photo-1519046947096-f43d6481532b?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2100&q=80');*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-.wrap:hover{
+
+.wrap:hover {
     opacity: 0.9;
 }
+
 .content {
     position: relative;
 }
@@ -172,6 +176,10 @@ hr {
     cursor: pointer;
 }
 
+#about-section {
+    width: 75%;
+    position: center;
+}
 #about-section h1 {
     margin-left: 50px;
 }
@@ -217,7 +225,7 @@ hr {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
@@ -244,6 +252,7 @@ hr {
 .history-tournaments {
     padding-top: 20px;
 }
+
 .history-tournaments-list {
     padding: 20px 0 20px 20px;
 }
@@ -251,10 +260,42 @@ hr {
 .history-tournaments-list h3 {
     padding-top: 15px;
 }
+
 .history-tournaments-list ul {
     padding-left: 20px;
 }
+
 .history-tournaments-list li {
     color: #0a0a0a;
     list-style: none;
+}
+
+.input-fields input[type=text], .input-fields input[type=number], .input-fields input[type=datetime-local], .input-fields input[type=password], .input-fields input[type=email] {
+    border: none;
+    border-bottom: 1px solid #0a0a0a;
+    height: 40px;
+    width: 350px;
+    outline: none;
+    padding: 20px 0 20px 7px;
+    margin: 10px 0 10px 7px;
+    color: #0a0a0a;
+}
+
+.input-fields select {
+    outline: none;
+    height: 40px;
+    width: 350px;
+    margin: 10px 0 10px 7px;
+}
+
+/* Firefox */
+.input-fields input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

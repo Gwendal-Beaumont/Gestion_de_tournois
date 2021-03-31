@@ -27,21 +27,21 @@
 <div class = 'accueil'>
     <h1>Accueil</h1>
     <h4>Les tournois publics en cours</h4>
-    <div class = 'wrap'>
-        <div class = 'content'>
-            <p>Trophée Orlandini</p>
+
+    <c:forEach items="${listeTournois}" var="tournoi">
+        <div class = 'wrap' style = "
+                background-image: url(${sport.getNom_tournoi()});
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;">
+            <div class = 'content'>
+                <p>
+                    ${tournoi.getNom_tournoi()}
+                </p>
+            </div>
         </div>
-    </div>
-    <div class = 'wrap'>
-        <div class = 'content'>
-            <p>Challenge Centrale Lyon</p>
-        </div>
-    </div>
-    <div class = 'wrap'>
-        <div class = 'content'>
-            <p>Cartel</p>
-        </div>
-    </div>
+
+    </c:forEach>
 </div>
 
 <%@ include file="template/footer.jsp" %>

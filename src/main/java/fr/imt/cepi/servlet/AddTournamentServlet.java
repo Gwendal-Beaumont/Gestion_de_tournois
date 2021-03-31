@@ -28,8 +28,7 @@ public class AddTournamentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String idT = req.getParameter("id-tournoi");
-        System.out.println(idT);
-        int idtournoi = 1;
+        int idtournoi = Integer.parseInt(idT);
         Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
         int iduser = user.getId();
 
