@@ -27,21 +27,7 @@
 <div class = 'accueil'>
     <h1>Accueil</h1>
     <h4>Les tournois publics en cours</h4>
-
-    <c:forEach items="${listeTournois}" var="tournoi">
-        <div class = 'wrap' style = "
-                background-image: url(${sport.getNom_tournoi()});
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;">
-            <div class = 'content'>
-                <p>
-                    ${tournoi.getNom_tournoi()}
-                </p>
-            </div>
-        </div>
-
-    </c:forEach>
+    <%@ include file="template/display_tournament.jsp" %>
 </div>
 
 <%@ include file="template/footer.jsp" %>

@@ -1,5 +1,6 @@
 package fr.imt.cepi.servlet;
 
+import fr.imt.cepi.bean.Sport;
 import fr.imt.cepi.bean.Tournoi;
 import fr.imt.cepi.bean.Utilisateur;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
@@ -42,24 +43,20 @@ public class HomeServlet extends HttpServlet {
                 // On indique dans le log un accès réussi aux données
                 logger.info("Fetched all tournaments data");
                 ArrayList<Tournoi> listeTournoi = new ArrayList<>();
-                HashMap<String, String> lienSportImage = new HashMap<>();
                 rs.beforeFirst();
                 while (rs.next()) {
                     listeTournoi.add(new Tournoi(
                             rs.getInt("id"),
                             rs.getString("nom"),
                             new ArrayList<>(),
-                            rs.getInt("id_sport"),
+                            new Sport(rs.getInt("id_sport"), rs.getString("sport.nom"), rs.getString("sport.image")),
                             rs.getBoolean("visibility"),
                             rs.getTimestamp("date_debut").toLocalDateTime(),
                             rs.getInt("proprietaire"),
                             rs.getInt("etat")));
-                    lienSportImage.put(rs.getString("sport.nom"), rs.getString("sport.image"));
                 }
                 System.out.println(listeTournoi);
-                System.out.println(lienSportImage);
                 request.setAttribute("listeTournois", listeTournoi);
-                request.setAttribute("lienSportImage", lienSportImage);
             }
             rs.close();
             getServletContext().getRequestDispatcher("/jsp/home.jsp").forward(request, response);

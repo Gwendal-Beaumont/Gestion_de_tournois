@@ -46,9 +46,9 @@ public class CreateTournamentServlet extends HttpServlet {
                 ArrayList<Sport> listeDesSports = new ArrayList<>();
                 rs.beforeFirst();
                 while (rs.next()) {
-                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom")));
+                    listeDesSports.add(new Sport(rs.getInt("id"), rs.getString("nom"), rs.getString("url")));
                 }
-                req.setAttribute("sports", listeDesSports);
+                req.setAttribute("sport", listeDesSports);
             }
             con.close();
             getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
@@ -111,10 +111,12 @@ public class CreateTournamentServlet extends HttpServlet {
                     id_tournoi = rs2.getInt("id");
                     logger.info("Le dernier tournoi de " + user.getUsername() + " (" + user.getId() + ") " + "a été trouvé et a pour id : " + id_tournoi);
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
             getServletContext().getRequestDispatcher("/jsp/create_tournament.jsp").forward(req, resp);
+
         }
         resp.sendRedirect("ManageTournaments?id_tournament=" + id_tournoi);
 
