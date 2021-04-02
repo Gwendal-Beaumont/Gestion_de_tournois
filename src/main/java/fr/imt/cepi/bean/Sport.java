@@ -11,9 +11,18 @@ public class Sport {
         this.url = url;
     }
 
+    public Sport(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
     @Override
     public String toString() {
-        return "Sport : " + nom + ", id : " + id + "\n";
+        return "Sport{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", url='" + url + '\'' +
+                '}';
     }
 
     public int getId() {

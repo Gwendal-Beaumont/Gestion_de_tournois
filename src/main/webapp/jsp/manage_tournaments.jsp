@@ -16,9 +16,7 @@
 <%@include file="template/navbar.jsp" %>
 <div class="paramtournoi">
 
-<c:forEach items="${listeTournois}" var="tournoi">
-
-    <h1>nom_du_tournoi : ${tournoi.getNom_tournoi()}</h1>
+    <h1>${tournoi.getNom_tournoi()} (#${tournoi.getId()})</h1>
     <h4>sport : ${tournoi.getSport().getNom()}</h4>
     <h4>date_du_tournoi : ${tournoi.getStringDate()}</h4>
     <h4>etat_du_tournoi : ${tournoi.getEtat()}</h4>
@@ -46,7 +44,7 @@
         </tr>
 
     </table>
-</c:forEach>
+
 
 </div>
 <p>ID du tournoi : ${id_tournament}</p>
