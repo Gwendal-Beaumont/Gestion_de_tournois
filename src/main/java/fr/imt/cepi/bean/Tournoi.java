@@ -179,9 +179,7 @@ public class Tournoi implements Serializable {
         return visibility;
     }
 
-    public String getStringDate() {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        String formattedDate = date.format(dateFormat);
-        return formattedDate;
+    public String getDate() {
+        return date.toString().replace('T', ' ');
     }
 }

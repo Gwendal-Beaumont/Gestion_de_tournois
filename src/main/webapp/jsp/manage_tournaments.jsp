@@ -19,7 +19,7 @@
 
     <h1>${tournoi.getNom_tournoi()} (#${tournoi.getId()})</h1>
     <h4>sport : ${tournoi.getSport().getNom()}</h4>
-    <h4>date_du_tournoi : ${tournoi.getStringDate()}</h4>
+    <h4>date_du_tournoi : ${tournoi.getDate()}</h4>
     <h4>etat_du_tournoi : ${tournoi.getEtat()}</h4>
     <h4>Equipes</h4>
 
