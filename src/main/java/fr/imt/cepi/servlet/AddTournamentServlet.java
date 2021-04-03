@@ -27,25 +27,18 @@ public class AddTournamentServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String idT = req.getParameter("id-tournoi");
-        int idtournoi =Integer.parseInt(idT);
-
+        int idtournoi =Integer.parseInt(req.getParameter("id-tournoi"));
         System.out.println(idtournoi);
+
         Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
         int iduser = user.getId();
 
-        Connection con = null;
-        try {
-            con = AppContextListener.getConnection();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        RejoindreTournoi joinTournoi = new RejoindreTournoi(idtournoi, iduser);
-        joinTournoi.join(con);
-        try {
-            con.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        try (Connection con = AppContextListener.getConnection()) {
+            RejoindreTournoi joinTournoi = new RejoindreTournoi(idtournoi, iduser);
+            joinTournoi.join(con);
+            logger.info("Tournoi (#"+idtournoi+") rejoint avec succès");
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);

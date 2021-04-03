@@ -29,7 +29,7 @@
             </select>
 
             <h4>Date de début du tournoi :</h4>
-            <input name="date-debut" type="datetime-local" value="2021-02-18T20:44" required/>
+            <input name="date-debut" type="datetime-local" value="" required/>
             <p>Problème d'affichage ? Si vous êtes sous Internet Explorer, Firefox ou Safari, essayez avec un autre
                 navigateur.<br></p>
 

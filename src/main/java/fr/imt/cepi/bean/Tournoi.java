@@ -125,7 +125,7 @@ public class Tournoi implements Serializable {
                 ", visibility=" + visibility +
                 ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
                 ", proprietaire=" + proprietaire +
-                '}';
+                "} \n";
     }
 
     /**

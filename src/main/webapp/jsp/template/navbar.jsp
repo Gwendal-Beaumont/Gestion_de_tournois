@@ -1,30 +1,13 @@
 <%@ page pageEncoding="UTF-8" %>
 <header>
-    <c:choose>
-        <c:when test="${utilisateur.getUsername() == null}">
-            <a href="<c:url value="/"/>"><img class="logo"
-                                              src="<c:url value="/images/logo_white_48pt.svg"/>"
-                                              alt="logo"></a>
-        </c:when>
-        <c:otherwise>
-            <a href="<c:url value="/Home"/>"><img class="logo"
-                                              src="<c:url value="/images/logo_white_48pt.svg"/>"
-                                              alt="logo"></a>
-        </c:otherwise>
-    </c:choose>
-
+    <a href="<c:url value="/Home"/>"><img class="logo"
+                                          src="<c:url value="/images/logo_white_48pt.svg"/>"
+                                          alt="logo"></a>
     <nav>
         <ul class="nav__links">
-            <c:choose>
-                <c:when test="${utilisateur.getUsername() == null}">
-                    <li><a href="<c:url value="/"/>">Accueil</a></li>
-                </c:when>
-                <c:otherwise>
-                    <li><a href="<c:url value="/Home"/>">Accueil</a></li>
-                </c:otherwise>
-            </c:choose>
+            <li><a href="<c:url value="/Home"/>">Accueil</a></li>
             <li><a href="<c:url value="/ManageTournaments"/>">Tournois</a></li>
-            <li><a href="<c:url value="/jsp/about.jsp"/>">&Agrave; propos</a></li>
+            <li><a href="<c:url value="/About"/>">&Agrave; propos</a></li>
         </ul>
     </nav>
 

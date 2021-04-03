@@ -9,12 +9,7 @@
 </head>
 <body>
 <%@include file="jsp/template/navbar.jsp" %>
-
-<c:choose>
-    <c:when test="${utilisateur.getUsername() == null}"><p>Aucun utilisateur connecté ! ${utilisateur.getUsername()}</p></c:when>
-    <c:otherwise><p>L'utilisateur connecté est ${utilisateur.getUsername()}.</p></c:otherwise>
-</c:choose>
-
+<c:redirect url="/Home">Redirect</c:redirect>
 <%@ include file="jsp/template/footer.jsp" %>
 
 </body>
