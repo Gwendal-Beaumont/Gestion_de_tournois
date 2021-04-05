@@ -8,13 +8,7 @@
 <body>
 <%@include file="template/navbar.jsp" %>
 
-<!-- Test de redirection pour vérifier si un utilisateur est connecté -->
-<c:if test="${utilisateur.getUsername() == null}">
-    <c:redirect url="/">Redirect</c:redirect>
-</c:if>
-
-
-<div class = 'accueil'>
+<div class='accueil'>
     <h1>Accueil</h1>
     <h4>Les tournois publics en cours :</h4>
     <%@ include file="template/display_tournament.jsp" %>

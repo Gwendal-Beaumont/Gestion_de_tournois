@@ -3,6 +3,8 @@ package fr.imt.cepi.servlet;
 import fr.imt.cepi.bean.Sport;
 import fr.imt.cepi.bean.Tournoi;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,10 +21,12 @@ import java.util.ArrayList;
 @WebServlet("/ManageTournaments")
 
 public class ManageTournamentsServlet extends HttpServlet {
+    static Logger logger = LogManager.getLogger(ManageTournamentsServlet.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id_tournament = req.getParameter("id_tournament");
-        System.out.println(id_tournament);
+        logger.info("Tournoi en cours de modification : "+id_tournament);
         int id;
         try {
             id = Integer.parseInt(id_tournament);

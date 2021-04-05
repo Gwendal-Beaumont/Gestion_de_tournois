@@ -125,7 +125,7 @@ public class Tournoi implements Serializable {
                 ", visibility=" + visibility +
                 ", date=" + DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss").format(date) +
                 ", proprietaire=" + proprietaire +
-                '}';
+                "} \n";
     }
 
     /**
@@ -179,9 +179,7 @@ public class Tournoi implements Serializable {
         return visibility;
     }
 
-    public String getStringDate() {
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        String formattedDate = date.format(dateFormat);
-        return formattedDate;
+    public String getDate() {
+        return date.toString().replace('T', ' ');
     }
 }
