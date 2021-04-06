@@ -298,3 +298,7 @@ input::-webkit-inner-spin-button {
     min-width: 32%;
     padding: 10px 0 10px 0;
 }
+
+#body_text a {
+    color: #9a0007;
+}

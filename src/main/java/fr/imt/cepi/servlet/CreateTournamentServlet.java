@@ -18,7 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-@WebServlet("/create_tournament")
+@WebServlet("/CreateTournament")
 public class CreateTournamentServlet extends HttpServlet {
     static Logger logger = LogManager.getLogger(CreateTournamentServlet.class);
 
@@ -103,7 +103,7 @@ public class CreateTournamentServlet extends HttpServlet {
             ps.setInt(5, user.getId());
             ps.executeUpdate();
             try (Connection con2 = AppContextListener.getConnection();
-                 PreparedStatement ps2 = con.prepareStatement(
+                 PreparedStatement ps2 = con2.prepareStatement(
                          "SELECT id FROM tst.tournoi WHERE proprietaire=? ORDER BY id DESC LIMIT 1")) {
                 ps2.setInt(1, user.getId());
                 ResultSet rs2 = ps2.executeQuery();

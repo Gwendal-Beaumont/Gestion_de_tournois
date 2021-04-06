@@ -14,7 +14,7 @@
 <div class="crt-tournament-box">
     <div class="input-fields">
         <h1> Créer mon tournoi !</h1>
-        <form action="create_tournament" method="post">
+        <form action="CreateTournament" method="post">
 
             <h4>Choisir le nom du tournoi</h4>
             <input name="nom-tournoi" type="text" class="form-control"

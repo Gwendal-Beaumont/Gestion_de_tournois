@@ -3,7 +3,7 @@
 <html>
 <head>
     <%@ include file="template/head_import.jsp" %>
-    <title>login.jsp</title>
+    <title>Connexion</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css">
 </head>
 <body>

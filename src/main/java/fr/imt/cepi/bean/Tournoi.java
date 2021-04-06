@@ -114,6 +114,26 @@ public class Tournoi implements Serializable {
         }
     }
 
+    /**
+     * Getter permettant de récupérer l'état du tournoi pour la page HTML
+     *
+     * @return String etat tournoi
+     */
+    public String getEtatJSP() {
+        switch (etat) {
+            case 0:
+                return "Inscriptions en cours";
+            case 1:
+                return "Inscriptions ferm&eacute;es";
+            case 2:
+                return "Tournoi en cours";
+            case 3:
+                return "Tournoi termin&eacute;";
+            default:
+                return "&Eacute;tat invalide";
+        }
+    }
+
     @Override
     public String toString() {
         return "Tournoi{" +

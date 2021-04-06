@@ -14,12 +14,12 @@
                 </div>
                 <div class="link-title">
                     <h4>&Agrave; propos</h4>
-                    <small>Démo</small><br>
-                    <small>FAQ</small>
+                    <a href="<c:url value="/MentionsLegales" />"><small>Mentions légales</small></a><br>
+                    <a href="<c:url value="/About" />"><small>FAQ</small></a>
                 </div>
                 <div class="link-title">
                     <h4>Support</h4>
-                    <small>Fonctionnalités</small><br>
+                    <small>RGPD</small><br>
                     <small>Nous contacter</small>
                 </div>
                 <div class="link-title">
