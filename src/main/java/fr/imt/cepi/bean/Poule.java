@@ -54,7 +54,10 @@ public class Poule {
 
 
     /**
-     * Cette méthode permet d'actualiser le tableau de scores de la poule
+     * Cette méthode permet d'actualiser le tableau de scores de la poule.
+     * Le tableau des scores se décompose en 7 colonnes, la première avec l'id de l'équipe,
+     * la seconde avec les pts, la troisième avec le nbr de victoires, nuls, défaites,
+     * puis le nbr de  matchs joués et le goal avrg.
      */
     public void refreshScores() {
         int[][] tableau_scores = new int[nbr_equipes][7];
@@ -66,7 +69,6 @@ public class Poule {
         for (int i = 0; i < getOrdre_matches().size(); i++) {
             Match match = getOrdre_matches().get(i);
             if (match.getEtat().equals("fini")) {
-                ArrayList<Equipe> equipes = match.getEquipes();
                 Equipe e1 = match.getEquipes().get(0);
                 Equipe e2 = match.getEquipes().get(1);
                 int id1 = getPositionEquipe(e1);
@@ -112,7 +114,6 @@ public class Poule {
      * @return ArrayList<Equipe>
      */
     public ArrayList<Equipe> vainqueurs(int nbr_vainqueurs) {
-
         refreshScores();
         int[][] tab = getTableau_scores();
         ArrayList<Integer> positions_a_trier = new ArrayList<>();

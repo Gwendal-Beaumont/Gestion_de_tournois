@@ -6,8 +6,7 @@
     <nav>
         <ul class="nav__links">
             <li><a href="<c:url value="/Home"/>">Accueil</a></li>
-            <li><a href="<c:url value="/ManageTournaments"/>">Tournois</a></li>
-            <li><a href="<c:url value="/About"/>">&Agrave; propos</a></li>
+            <li><a href="<c:url value="/MyTournaments"/>">Mes tournois</a></li>
         </ul>
     </nav>
 
@@ -29,7 +28,7 @@
                         <div class="btnSubmit"> Tournoi &blacktriangledown;</div>
                     </button>
                     <div class="dropdown-content">
-                        <a href="<c:url value="/create_tournament"/>">Créer</a>
+                        <a href="<c:url value="/CreateTournament"/>">Créer</a>
                         <a href="<c:url value="/AddTournament"/>">Rejoindre</a>
                     </div>
                 </div>

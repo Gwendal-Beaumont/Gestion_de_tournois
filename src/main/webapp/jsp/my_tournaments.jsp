@@ -2,7 +2,7 @@
 <html>
 <head>
     <%@ include file="template/head_import.jsp" %>
-    <title>my_tournaments</title>
+    <title>Mes tournois</title>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>

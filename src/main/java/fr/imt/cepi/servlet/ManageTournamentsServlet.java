@@ -53,7 +53,7 @@ public class ManageTournamentsServlet extends HttpServlet {
             }
             rs.close();
             getServletContext().getRequestDispatcher("/jsp/manage_tournaments.jsp").forward(req, resp);
-        } catch (SQLException e ){
+        } catch (SQLException e){
             getServletContext().getRequestDispatcher("/jsp/manage_tournaments.jsp").forward(req, resp);
         }
     }

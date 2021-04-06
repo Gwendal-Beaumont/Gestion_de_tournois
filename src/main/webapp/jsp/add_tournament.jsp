@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Rejoindre un tournoi </title>
+    <title>Rejoindre un tournoi</title>
     <%@ include file="template/head_import.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>

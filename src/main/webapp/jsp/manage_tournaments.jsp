@@ -9,7 +9,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>manage_tournaments.jsp</title>
+    <title>Gestion du tournoi (#${tournoi.getId()})</title>
     <%@ include file="template/head_import.jsp" %>
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/style.css">
 </head>
@@ -18,10 +18,10 @@
 <div class="paramtournoi">
 
     <h1>${tournoi.getNom_tournoi()} (#${tournoi.getId()})</h1>
-    <h4>sport : ${tournoi.getSport().getNom()}</h4>
-    <h4>date_du_tournoi : ${tournoi.getDate()}</h4>
-    <h4>etat_du_tournoi : ${tournoi.getEtat()}</h4>
-    <h4>Equipes</h4>
+    <h4>Sport : ${tournoi.getSport().getNom()}</h4>
+    <h4>Date du tournoi : ${tournoi.getDate()}</h4>
+    <h4>&Eacute;tat du tournoi : ${tournoi.getEtatJSP()}</h4>
+    <h4>&Eacute;quipes</h4>
 
     <table>
 
