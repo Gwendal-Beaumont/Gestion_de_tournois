@@ -69,6 +69,9 @@ public class CreateTournamentServlet extends HttpServlet {
         String date = req.getParameter("date-debut");
         System.out.println(date);
 
+        int nbPlayersByTeams = Integer.parseInt(req.getParameter("nbr-joueurs"));
+        int nbEquipes = Integer.parseInt(req.getParameter("nbr-equipes"));
+
         String sport = req.getParameter("sport");
 
         Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
@@ -85,6 +88,7 @@ public class CreateTournamentServlet extends HttpServlet {
         java.sql.Timestamp date4 = new Timestamp(date3.getTime());
 
 
+
         // On crée nos attributs pour la base de données
         Connection con;
         PreparedStatement ps;
@@ -95,12 +99,15 @@ public class CreateTournamentServlet extends HttpServlet {
         // On tente d'envoyer le tournoi à la base de données
         try {
             con = AppContextListener.getConnection();
-            ps = con.prepareStatement("INSERT INTO tst.tournoi(nom, id_sport, visibility, date_debut, proprietaire) VALUES (?, ?, ?, ?, ?)");
+            ps = con.prepareStatement("INSERT INTO tst.tournoi(nom, id_sport, visibility, date_debut, proprietaire, etat, nb_joueurs_par_equipe, nb_equipes) VALUES (?, ?, ?, ?, ?, ?,?,?)");
             ps.setString(1, nom);
             ps.setInt(2, Integer.parseInt(sport));
             ps.setBoolean(3, visibility.equals("public")); // True = public
             ps.setTimestamp(4, date4);
             ps.setInt(5, user.getId());
+            ps.setInt(6, 0);
+            ps.setInt(7, nbPlayersByTeams);
+            ps.setInt(8, nbEquipes);
             ps.executeUpdate();
             req.setAttribute("message", "Tournoi créé avec succès !");
             try (Connection con2 = AppContextListener.getConnection();

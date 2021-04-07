@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @WebServlet("/AddTournament")
@@ -23,25 +25,50 @@ public class AddTournamentServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);
+        System.out.println("test3");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int idtournoi =Integer.parseInt(req.getParameter("id-tournoi"));
+        // On crée l'atttribut pour la base de données
+        PreparedStatement ps;
+        ResultSet rs;
+
+        int idtournoi = Integer.parseInt(req.getParameter("id-tournoi"));
         System.out.println(idtournoi);
 
-        Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
-        int iduser = user.getId();
-
+        //On récupère l'état du tournoi
         try (Connection con = AppContextListener.getConnection()) {
-            RejoindreTournoi joinTournoi = new RejoindreTournoi(idtournoi, iduser);
-            joinTournoi.join(con);
-            logger.info("Tournoi (#"+idtournoi+") rejoint avec succès");
-        } catch (SQLException e) {
+            ps = con.prepareStatement("SELECT etat FROM tst.tournoi WHERE id =" + idtournoi);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int etat = rs.getInt("etat");
+                if (etat == 0) {
+
+                    Utilisateur user = (Utilisateur) req.getSession().getAttribute("utilisateur");
+                    int iduser = user.getId();
+
+                    try (Connection con2 = AppContextListener.getConnection()) {
+                        RejoindreTournoi joinTournoi = new RejoindreTournoi(idtournoi, iduser);
+                        joinTournoi.join(con2);
+                        logger.info("Tournoi (#" + idtournoi + ") rejoint avec succès");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                } else {
+                    req.setAttribute("errorMessage", "On ne peut plus rejoindre le tournoi");
+                    getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);
+                }
+
+            }
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        resp.sendRedirect("ManageTournaments?id_tournament=" + idtournoi);
 
-        getServletContext().getRequestDispatcher("/jsp/add_tournament.jsp").forward(req, resp);
     }
 }
 

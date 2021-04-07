@@ -1,6 +1,11 @@
 package fr.imt.cepi.bean;
 
+import fr.imt.cepi.servlet.listeners.AppContextListener;
+
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -16,13 +21,16 @@ public class Tournoi implements Serializable {
     private ArrayList<Equipe> liste_equipes;
     private ArrayList<Match> ordre_matches;
     private Sport sport;
+    private int nbEquipes;
+    private int nbPlayersByTeam;
+    private ArrayList<Utilisateur> listeJoueur = new ArrayList<Utilisateur>();
     private Boolean visibility;
     private LocalDateTime date;
     private int proprietaire;
     private int etat; //0 inscriptions ouvertes / 1 inscriptions fermees / 2 tournoi en cours / 3 Tournoi terminé
 
     // Constructeur
-    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, Sport sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, int nbEquipes, int nbPlayersByTeam, Sport sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
         this.id = id;
         this.nom_tournoi = nom_tournoi;
         this.liste_equipes = liste_equipes;
@@ -34,6 +42,46 @@ public class Tournoi implements Serializable {
         this.etat = etat;
     }
 
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, Sport sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
+        this.id = id;
+        this.nom_tournoi = nom_tournoi;
+        this.liste_equipes = liste_equipes;
+
+        this.sport = sport;
+        this.visibility = visibility;
+        this.date = date;
+        this.proprietaire = proprietaire;
+        this.etat = etat;
+    }
+
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, ArrayList<Match> ordre_matches, Sport sport, int nbEquipes, int nbPlayersByTeam, Boolean visibility, LocalDateTime date, int proprietaire, int etat) {
+        this.id = id;
+        this.nom_tournoi = nom_tournoi;
+        this.liste_equipes = liste_equipes;
+        this.ordre_matches = ordre_matches;
+        this.sport = sport;
+        this.nbEquipes = nbEquipes;
+        this.nbPlayersByTeam = nbPlayersByTeam;
+        this.visibility = visibility;
+        this.date = date;
+        this.proprietaire = proprietaire;
+        this.etat = etat;
+    }
+
+    public Tournoi(int id, String nom_tournoi, ArrayList<Equipe> liste_equipes, Sport sport, Boolean visibility, LocalDateTime date, int proprietaire, int etat, int nbPlayersByTeam, int nbEquipes) {
+        this.id = id;
+        this.nom_tournoi = nom_tournoi;
+        this.liste_equipes = liste_equipes;
+
+        this.sport = sport;
+        this.nbEquipes = nbEquipes;
+        this.nbPlayersByTeam = nbPlayersByTeam;
+
+        this.visibility = visibility;
+        this.date = date;
+        this.proprietaire = proprietaire;
+        this.etat = etat;
+    }
     //Méthodes
 
     /**
@@ -155,6 +203,10 @@ public class Tournoi implements Serializable {
         this.etat = 1;
     }
 
+    public void addUtilisateur() {
+
+    }
+
     /**
      * Méthode permettant d'ouvrir les inscriptions
      */
@@ -202,4 +254,68 @@ public class Tournoi implements Serializable {
     public String getDate() {
         return date.toString().replace('T', ' ');
     }
+
+    public void creeEquipe() {
+
+        if (etat == 1) {
+            //On récupère la liste des utilisateurs du tournoi
+
+            try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
+                    "SELECT tst.utilisateur.username, tst.utilisateur.email, tst.utilisateur.id FROM tst.utilisateur_tournoi JOIN tst.utilisateur ON tst.utilisateur_tournoi.id_utilisateur= tst.utilisateur.id WHERE tst.utilisateur_tournoi.id_tournoi=" + id)) {
+                ResultSet rs;
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    listeJoueur.add(new Utilisateur(
+                            rs.getString(1),
+                            rs.getString(2),
+                            rs.getInt(3)
+                    ));
+
+                }
+
+                ArrayList<Integer> listeTrie = new ArrayList<Integer>();
+                ArrayList<Integer> listeRandom = new ArrayList<Integer>();
+
+                for (int i = 0; i < listeJoueur.size(); i++) {
+                    listeTrie.add(i);
+
+                }
+                int indiceRandom = 0;
+
+                for (int i = 0; i < listeJoueur.size(); i++) {
+                    indiceRandom = (int) (Math.random() * listeTrie.size());
+                    listeRandom.add(listeTrie.get(indiceRandom));
+                    listeTrie.remove(indiceRandom);
+
+                }
+                int k = 0;
+
+                for (int i = 0; i < nbEquipes; i++) {
+
+                    liste_equipes.add(new Equipe(
+                            "Equipe " + String.valueOf(i),
+                            id
+                    ));
+                    for (int j = 0; j < nbPlayersByTeam; j++) {
+
+                        liste_equipes.get(i).ajouterJoueur(listeJoueur.get(listeRandom.get(k)));
+                        k++;
+                    }
+
+                }
+                //On ajoute les équipes à la base de données.
+                for (Equipe eq : liste_equipes) {
+                    eq.updateBDD();
+
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        } else {
+
+        }
+    }
+
 }

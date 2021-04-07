@@ -18,35 +18,30 @@
 <%@ include file="template/alerts.jsp" %>
 <div class="paramtournoi">
 
+
     <h1>${tournoi.getNom_tournoi()} (#${tournoi.getId()})</h1>
     <h4>Sport : ${tournoi.getSport().getNom()}</h4>
     <h4>Date du tournoi : ${tournoi.getDate()}</h4>
     <h4>&Eacute;tat du tournoi : ${tournoi.getEtatJSP()}</h4>
+    <br />
+    <h4>Liste des joueurs : | <c:forEach items = "${listeUtilisateur}" var = "utilisateur"> ${utilisateur.getUsername()} |</c:forEach>
+    </h4>
+    <br />
     <h4>&Eacute;quipes</h4>
 
     <table>
-
-        <tr>
-            <td>équipe A</td>
-            <td>id_joueur 1</td>
-            <td>id_joueur 2</td>
-            <td>id_joueur 3</td>
-        </tr>
-        <tr>
-            <td>équipe B</td>
-            <td>id_joueur 1</td>
-            <td>id_joueur 2</td>
-            <td>id_joueur 3</td>
-        </tr>
-        <tr>
-            <td>équipe C</td>
-            <td>id_joueur 1</td>
-            <td>id_joueur 2</td>
-            <td>id_joueur 3</td>
-        </tr>
+        <c:forEach items="${listeEquipe}" var="equipe">
+            <tr>
+                <td>${equipe.getNom_equipe()}</td>
+                <c:forEach items = "${equipe.getJoueurs_equipe()}" var="joueur">
+                    <td>${joueur.getUsername()}</td>
+                </c:forEach>
+            </tr>
+        </c:forEach>
 
     </table>
-
+    <br />
+    <input type = "button" class = "btnSubmit" onclick="${tournoi.creeEquipe()}" value = "Crée Equipe">
 
 </div>
 

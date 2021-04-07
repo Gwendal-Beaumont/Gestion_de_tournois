@@ -1,5 +1,10 @@
 package fr.imt.cepi.bean;
 
+import fr.imt.cepi.servlet.listeners.AppContextListener;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class Equipe {
@@ -7,15 +12,26 @@ public class Equipe {
     //Attributs
     private int id_equipe;
     private String nom_equipe;
-    private int nb_joueurs;
-    private ArrayList<Utilisateur> joueurs_equipe; //correspond à une liste d'id des joueurs de l'équipe
+    private int id_Tournoi;
+
+    private ArrayList<Utilisateur> joueurs_equipe = new ArrayList<Utilisateur>(); //correspond à une liste d'id des joueurs de l'équipe
 
     //Constructeur
-    public Equipe(int id_equipe, String nom_equipe){
+    public Equipe(int id_equipe, String nom_equipe) {
         this.id_equipe = id_equipe;
         this.nom_equipe = nom_equipe;
-        this.nb_joueurs = nb_joueurs;
-        this.joueurs_equipe = joueurs_equipe;
+
+    }
+
+    public Equipe(String nom_equipe, int id_Tournoi) {
+        this.nom_equipe = nom_equipe;
+        this.id_Tournoi = id_Tournoi;
+    }
+
+    public Equipe(int id_equipe, String nom_equipe, int id_Tournoi) {
+        this.id_equipe = id_equipe;
+        this.nom_equipe = nom_equipe;
+        this.id_Tournoi = id_Tournoi;
     }
 
     //Getter
@@ -28,9 +44,6 @@ public class Equipe {
         return id_equipe;
     }
 
-    public int getNb_joueurs() {
-        return nb_joueurs;
-    }
 
     public ArrayList<Utilisateur> getJoueurs_equipe() {
         return joueurs_equipe;
@@ -46,9 +59,6 @@ public class Equipe {
         this.nom_equipe = nom_equipe;
     }
 
-    public void setNb_joueurs(int nb_joueurs) {
-        this.nb_joueurs = nb_joueurs;
-    }
 
     public void setJoueurs_equipe(ArrayList<Utilisateur> joueurs_equipe) {
         this.joueurs_equipe = joueurs_equipe;
@@ -57,22 +67,65 @@ public class Equipe {
     //Méthodes
 
     /**
-     * Méthode permettant de savoir si l'équipe est complete
-     * @return true si elle est complète
+     * Méthode permettant d'ajouter un joueur à une équipe incomplète
+     *
+     * @param joueur l'identifiant du joueur en question
      */
-    public boolean equipeComplete(){
-        int n = joueurs_equipe.size();
-        return (n == nb_joueurs);
+    public void ajouterJoueur(Utilisateur joueur) {
+
+        joueurs_equipe.add(joueur);
     }
 
-    /**
-     * Méthode permettant d'ajouter un joueur à une équipe incomplète
-     * @param id_joueur l'identifiant du joueur en question
-     */
-    public void ajouterJoueur(Utilisateur id_joueur){
-        if (!equipeComplete()) {
-            joueurs_equipe.add(id_joueur);
+
+    //Ajoute ou modifie la base de données avec les informations contenu dans l'objet.
+    public void updateBDD() {
+        try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
+                "SELECT count(*) FROM equipe WHERE nom = ?  AND id_tournoi= ?")) {
+            ps.setString(1, nom_equipe);
+            ps.setInt(2, id_Tournoi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                if (rs.getInt(1)==0) {
+                    try (Connection con2 = AppContextListener.getConnection(); PreparedStatement ps2 = con2.prepareStatement(
+                            "INSERT INTO tst.equipe(nom, id_tournoi) VALUES (?,?)")) {
+
+                        ps2.setString(1, nom_equipe);
+                        ps2.setInt(2, id_Tournoi);
+                        ps2.executeUpdate();
+
+                    } catch (Exception e2) {
+                        e2.printStackTrace();
+                    }
+                    try (Connection con3 = AppContextListener.getConnection(); PreparedStatement ps3 = con3.prepareStatement(
+                            "SELECT id FROM equipe WHERE nom = ? and id_tournoi= ?")) {
+                        ps3.setString(1, nom_equipe);
+                        ps3.setInt(2, id_Tournoi);
+                        ResultSet rs3 = ps3.executeQuery();
+                        if (rs3.next()) {
+                            id_equipe = rs3.getInt("id");
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                    for (Utilisateur joueur : joueurs_equipe) {
+                        System.out.println(joueur.getId());
+                        try (Connection con2 = AppContextListener.getConnection(); PreparedStatement ps2 = con2.prepareStatement(
+                                "INSERT INTO tst.equipe_utilisateur(id_equipe, id_joueur, role) VALUES (?,?,?)")) {
+                            ps2.setInt(1, id_equipe);
+                            ps2.setInt(2, joueur.getId());
+                            ps2.setInt(3,1);
+                            ps2.executeUpdate();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //sinon, afficher equipe complete
     }
 }

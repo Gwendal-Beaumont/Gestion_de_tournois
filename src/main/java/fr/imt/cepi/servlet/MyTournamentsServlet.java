@@ -18,7 +18,6 @@ public class MyTournamentsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/jsp/my_tournaments.jsp").forward(req, resp);
-        Tournoi = new Tournoi();
 
     }
 
