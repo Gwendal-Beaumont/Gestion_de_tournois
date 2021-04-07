@@ -125,7 +125,8 @@ header {
 
 .paramtournoi td /* Toutes les cellules des tableaux... */
 {
-    border: 10px solid pink; /* auront une bordure de 1px */
+    border: 3px solid black; /* auront une bordure de 1px */
+    padding: 50px 0 30px;
 }
 
 /*Footer*/
