@@ -302,3 +302,13 @@ input::-webkit-inner-spin-button {
 #body_text a {
     color: #9a0007;
 }
+
+#body_text li {
+    color : #0a0a0a;
+    text-decoration: #0a0a0a;
+    margin-left: 50px;
+}
+
+#body_text h2, #body_text h3 {
+    padding: 20px 0 10px 0;
+}

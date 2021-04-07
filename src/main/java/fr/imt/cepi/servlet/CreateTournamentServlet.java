@@ -102,6 +102,7 @@ public class CreateTournamentServlet extends HttpServlet {
             ps.setTimestamp(4, date4);
             ps.setInt(5, user.getId());
             ps.executeUpdate();
+            req.setAttribute("message", "Tournoi créé avec succès !");
             try (Connection con2 = AppContextListener.getConnection();
                  PreparedStatement ps2 = con2.prepareStatement(
                          "SELECT id FROM tst.tournoi WHERE proprietaire=? ORDER BY id DESC LIMIT 1")) {

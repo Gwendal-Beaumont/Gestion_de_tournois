@@ -10,6 +10,7 @@
 
 <body>
 <%@include file="template/navbar.jsp" %>
+<%@ include file="template/alerts.jsp" %>
 
 <div class="crt-tournament-box">
     <div class="input-fields">

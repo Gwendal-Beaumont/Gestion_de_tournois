@@ -15,6 +15,7 @@
 </head>
 <body>
 <%@include file="template/navbar.jsp" %>
+<%@ include file="template/alerts.jsp" %>
 <div class="paramtournoi">
 
     <h1>${tournoi.getNom_tournoi()} (#${tournoi.getId()})</h1>
