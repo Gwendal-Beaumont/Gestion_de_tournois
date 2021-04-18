@@ -15,8 +15,8 @@ CREATE TABLE tst.utilisateur
 (
     id           int         NOT NULL AUTO_INCREMENT,
     username     varchar(20) NOT NULL,
-    email        varchar(20) NOT NULL,
-    password     varchar(20) NOT NULL,
+    email        varchar(50) NOT NULL,
+    password     varchar(21) NOT NULL,
     role_general int         NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
@@ -24,32 +24,37 @@ CREATE TABLE tst.utilisateur
 -- Création de la table des sports
 CREATE TABLE tst.sport
 (
-    id  int         NOT NULL AUTO_INCREMENT,
-    nom varchar(50) NOT NULL,
+    id    int         NOT NULL AUTO_INCREMENT,
+    nom   varchar(50) NOT NULL,
+    image varchar(300),
     CONSTRAINT pkSport PRIMARY KEY (id)
-);
-
--- Création de la table des équipes
-CREATE TABLE tst.equipe
-(
-    id  int         NOT NULL AUTO_INCREMENT,
-    nom varchar(50) NOT NULL,
-    CONSTRAINT pkEquipe PRIMARY KEY (id)
 );
 
 -- Création de la table des tournois
 CREATE TABLE tst.tournoi
 (
-    id           int         NOT NULL AUTO_INCREMENT,
-    nom          varchar(50) NOT NULL,
-    id_sport     int         NOT NULL,
-    visibility   boolean     NOT NULL,
-    date_debut   DATETIME    NOT NULL,
-    proprietaire int         NOT NULL,
-    etat         int         NOT NULL DEFAULT 1,
+    id                    int         NOT NULL AUTO_INCREMENT,
+    nom                   varchar(50) NOT NULL,
+    id_sport              int         NOT NULL,
+    visibility            boolean     NOT NULL,
+    date_debut            DATETIME    NOT NULL,
+    proprietaire          int         NOT NULL,
+    etat                  int         NOT NULL DEFAULT 0,
+    nb_joueurs_par_equipe int,
+    nb_equipes            int,
     CONSTRAINT pkTournoi PRIMARY KEY (id),
     CONSTRAINT fkSportTournoi FOREIGN KEY (id_sport) REFERENCES sport (id),
     CONSTRAINT fkTournoiProprietaire FOREIGN KEY (proprietaire) REFERENCES utilisateur (id)
+);
+
+-- Création de la table des équipes
+CREATE TABLE tst.equipe
+(
+    id         int         NOT NULL AUTO_INCREMENT,
+    nom        varchar(50) NOT NULL,
+    id_tournoi int,
+    CONSTRAINT pkEquipe PRIMARY KEY (id),
+    CONSTRAINT fkEquipeTournoi FOREIGN KEY (id_tournoi) REFERENCES tournoi (id)
 );
 
 -- Création de la table des matchs
@@ -94,6 +99,15 @@ CREATE TABLE tst.equipe_utilisateur
     role      int,
     CONSTRAINT fkEquipeEquipe FOREIGN KEY (id_equipe) REFERENCES equipe (id),
     CONSTRAINT fkEquipeJoueur FOREIGN KEY (id_joueur) REFERENCES utilisateur (id)
+);
+
+-- Création de la table d'association utilisateur/tournoi
+CREATE TABLE tst.utilisateur_tournoi
+(
+    id_utilisateur int NOT NULL,
+    id_tournoi     int NOT NULL,
+    CONSTRAINT fkUtil FOREIGN KEY (id_utilisateur) REFERENCES utilisateur (id),
+    CONSTRAINT fkTournoi FOREIGN KEY (id_tournoi) REFERENCES tournoi (id)
 );
 
 insert into tst.sport(nom)
