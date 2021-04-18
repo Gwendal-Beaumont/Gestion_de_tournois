@@ -10,7 +10,7 @@
 
 <div class="jumbotron">
 
-    <p>Les tournois auquels ${utilisateur.getUsername()} participe :</p>
+    <p>Les tournois auxquels vous participez :</p>
     <c:forEach items="${listeTournois}" var="tournoi">
         <p>${tournoi.getNom_tournoi()}<br>
         </p>

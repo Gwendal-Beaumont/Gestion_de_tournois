@@ -1,5 +1,6 @@
 package fr.imt.cepi.servlet;
 
+import fr.imt.cepi.bean.EncrypteurMDP;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -55,14 +57,14 @@ public class RegisterServlet extends HttpServlet {
                 ps = con.prepareStatement("insert into tst.utilisateur(username, email, password) values (?,?,?)");
                 ps.setString(1, username);
                 ps.setString(2, email);
-                ps.setString(3, password);
+                ps.setString(3, new EncrypteurMDP(password).encrypt());
                 ps.execute();
                 logger.info("Utilisateur enregistré avec le username " + username);
                 // On affiche la page d'accueil
                 request.setAttribute("message",
                         "Enregistrement effectué avec succès, veuillez vous identifier.");
                 getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
-            } catch (SQLException e) {
+            } catch (SQLException | NoSuchAlgorithmException e) {
                 // Sinon, log de l'erreur et renvoi sur la vue login.jsp avec un message d'erreur
                 logger.error("Problème d'accès à la base de données : ", e);
                 request.setAttribute("errorMessage", "Erreur technique : veuillez contacter l'administrateur de l'application.");

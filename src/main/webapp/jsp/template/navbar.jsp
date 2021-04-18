@@ -6,7 +6,9 @@
     <nav>
         <ul class="nav__links">
             <li><a href="<c:url value="/Home"/>">Accueil</a></li>
-            <li><a href="<c:url value="/MyTournaments"/>">Mes tournois</a></li>
+            <c:if test="${utilisateur.getUsername() != null}">
+                <li><a href="<c:url value="/MyTournaments"/>">Mes tournois</a></li>
+            </c:if>
         </ul>
     </nav>
 

@@ -65,19 +65,19 @@ public class ManageTournamentsServlet extends HttpServlet {
         ArrayList<Utilisateur> listeUtilisateur = new ArrayList<>();
 
         try (Connection con2 = AppContextListener.getConnection(); PreparedStatement ps2 = con2.prepareStatement(
-                "SELECT utilisateur.id, utilisateur.username, utilisateur.email FROM utilisateur_tournoi JOIN utilisateur ON utilisateur_tournoi.id_utilisateur = utilisateur.id WHERE utilisateur_tournoi.id_tournoi = ?")){
+                "SELECT utilisateur.id, utilisateur.username, utilisateur.email FROM utilisateur_tournoi JOIN utilisateur ON utilisateur_tournoi.id_utilisateur = utilisateur.id WHERE utilisateur_tournoi.id_tournoi = ?")) {
             ps2.setInt(1, id);
             ResultSet rs2 = ps2.executeQuery();
-            while(rs2.next()){
+            while (rs2.next()) {
                 listeUtilisateur.add(new Utilisateur(
                         rs2.getString("username"),
                         rs2.getString("email"),
                         rs2.getInt("id")
-                        ));
+                ));
             }
             req.setAttribute("listeUtilisateur", listeUtilisateur);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -101,7 +101,7 @@ public class ManageTournamentsServlet extends HttpServlet {
                         "SELECT utilisateur.username, utilisateur.email, utilisateur.id FROM utilisateur JOIN equipe_utilisateur ON utilisateur.id = equipe_utilisateur.id_joueur WHERE equipe_utilisateur.id_equipe = ?")) {
                     ps3.setInt(1, eq.getId_equipe());
                     ResultSet rs3 = ps3.executeQuery();
-                    while(rs3.next()){
+                    while (rs3.next()) {
                         eq.ajouterJoueur(new Utilisateur(
                                 rs3.getString("username"),
                                 rs3.getString("email"),
@@ -123,9 +123,6 @@ public class ManageTournamentsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         getServletContext().getRequestDispatcher("/jsp/manage_tournaments.jsp").forward(req, resp);
-
-
     }
 }

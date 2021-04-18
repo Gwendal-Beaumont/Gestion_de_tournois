@@ -19,7 +19,11 @@ public class Utilisateur implements Serializable {
 
 
 	public int getId() {
-		return id;
+		if (this != null) {
+			return id;
+		} else {
+			return -1;
+		}
 	}
 
 	public void setId(int pId) {

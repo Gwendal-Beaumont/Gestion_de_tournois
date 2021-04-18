@@ -23,25 +23,27 @@
     <h4>Sport : ${tournoi.getSport().getNom()}</h4>
     <h4>Date du tournoi : ${tournoi.getDate()}</h4>
     <h4>&Eacute;tat du tournoi : ${tournoi.getEtatJSP()}</h4>
-    <br />
-    <h4>Liste des joueurs : | <c:forEach items = "${listeUtilisateur}" var = "utilisateur"> ${utilisateur.getUsername()} |</c:forEach>
+    <br/>
+    <h4>Liste des joueurs : <c:forEach items="${listeUtilisateur}"
+                                       var="utilisateur"> ${utilisateur.getUsername()} |</c:forEach>
     </h4>
-    <br />
+    <br/>
     <h4>&Eacute;quipes</h4>
 
     <table>
         <c:forEach items="${listeEquipe}" var="equipe">
             <tr>
                 <td>${equipe.getNom_equipe()}</td>
-                <c:forEach items = "${equipe.getJoueurs_equipe()}" var="joueur">
+                <c:forEach items="${equipe.getJoueurs_equipe()}" var="joueur">
                     <td>${joueur.getUsername()}</td>
                 </c:forEach>
             </tr>
         </c:forEach>
 
     </table>
-    <br />
-    <input type = "button" class = "btnSubmit" onclick="${tournoi.creeEquipe()}" value = "Crée Equipe">
+    <br/>
+    <input type="button" class="btnSubmit" onclick="${tournoi.creeEquipe()}; window.location.reload()"
+           value="Créer équipes">
 
 </div>
 

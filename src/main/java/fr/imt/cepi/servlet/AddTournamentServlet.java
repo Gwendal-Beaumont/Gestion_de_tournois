@@ -40,7 +40,8 @@ public class AddTournamentServlet extends HttpServlet {
 
         //On récupère l'état du tournoi
         try (Connection con = AppContextListener.getConnection()) {
-            ps = con.prepareStatement("SELECT etat FROM tst.tournoi WHERE id =" + idtournoi);
+            ps = con.prepareStatement("SELECT etat FROM tst.tournoi WHERE id =?");
+            ps.setInt(1, idtournoi);
             rs = ps.executeQuery();
             if (rs.next()) {
                 int etat = rs.getInt("etat");

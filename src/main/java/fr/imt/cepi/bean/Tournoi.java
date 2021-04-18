@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -234,7 +235,13 @@ public class Tournoi implements Serializable {
      * Méthode qui permet de changer l'état du tournoi pour le démarrer (qu'il soit ouvert ou fermé)
      */
     public void demarrerTournoi() {
-        this.etat = 2;
+        try (Connection con = AppContextListener.getConnection(); PreparedStatement ps = con.prepareStatement(
+                "UPDATE tst.tournoi SET etat=2 WHERE id=?")) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 

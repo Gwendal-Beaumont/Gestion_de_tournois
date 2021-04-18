@@ -1,5 +1,6 @@
 package fr.imt.cepi.servlet;
 
+import fr.imt.cepi.bean.EncrypteurMDP;
 import fr.imt.cepi.bean.Utilisateur;
 import fr.imt.cepi.servlet.listeners.AppContextListener;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,7 +60,7 @@ public class LoginServlet extends HttpServlet {
                 ps = con.prepareStatement(
                         "select id, username, email from tst.utilisateur where username=? and password=? limit 1");
                 ps.setString(1, username);
-                ps.setString(2, password);
+                ps.setString(2, new EncrypteurMDP(password).encrypt());
                 rs = ps.executeQuery();
                 if (rs.next()) {
                     // Si on l'a trouvé, on l'indique dans le log
@@ -76,7 +78,7 @@ public class LoginServlet extends HttpServlet {
                     request.setAttribute("errorMessage", "Mauvais nom d'utilisateur ou mot de passe.");
                     getServletContext().getRequestDispatcher("/jsp/login.jsp").forward(request, response);
                 }
-            } catch (SQLException e) {
+            } catch (SQLException | NoSuchAlgorithmException e) {
                 // Sinon, log de l'erreur et renvoi sur la vue login.jsp avec un message d'erreur
                 logger.error("Problème d'accès à la base de données : ", e);
                 request.setAttribute("errorMessage", "Erreur technique : veuillez contacter l'administrateur de l'application.");
