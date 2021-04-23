@@ -16,7 +16,7 @@ CREATE TABLE tst.utilisateur
     id           int         NOT NULL AUTO_INCREMENT,
     username     varchar(20) NOT NULL,
     email        varchar(50) NOT NULL,
-    password     varchar(21) NOT NULL,
+    password     varchar(128) NOT NULL,
     role_general int         NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
